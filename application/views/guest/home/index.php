@@ -11,27 +11,13 @@
                             Kami adalah platform penyedia pilihan tempat Co-Working Space Terbesar Se Malang
                             Raya. Daftar dan temukan tempat nyaman untuk bekerja bagi anda.
                         </p>
-                        <!-- <div class="row">
-                                    <div class="col-sm-12 col-12">
-                                        <label for="">Cari Tanggal Reservasi</label>
-                                    </div>
-                                </div> -->
-                        <!-- <div class="row row-input">
-                                    <div class="col-sm-8 col-12">
-                                        <input type="email" class="form-control" name="email" id="signupSrEmail"
-                                            placeholder="Your email" aria-label="Your email">
-                                    </div>
-                                    <div class="col-sm-2 col-12 pl-lg-0">
-                                        <button type="submit" class="btn btn-primary btn-block">Cari</button>
-                                    </div>
-                                </div> -->
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-warning btn-block">Daftar Sebagai member</button>
+                                <a href="<?= site_url('auth/register_guest')?>" class="btn btn-warning btn-block">Daftar Sebagai member</a>
                             </div>
                             <div class="col-md-6">
-                                <button class="btn btn-outline-primary btn-block">Daftar Sebagai pemilik
-                                    tempat</button>
+                                <a href="<?= site_url('auth/register_owner')?>" class="btn btn-outline-primary btn-block">Daftar Sebagai pemilik
+                                    tempat</a>
                             </div>
                         </div>
                     </div>

@@ -18,14 +18,22 @@
                                 <div class="text-center text-muted mb-4">
                                     <small>Buat Akun Anda Untuk Melanjutkan</small>
                                 </div>
-                                <form role="form">
-                                    <input type="hidden" name="role" value="guest">
+                                <form role="form" method="post" id="register_form">
+                                    <input type="hidden" name="role" value="owner">
+                                    <div class="form-group mb-3">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
+                                            </div>
+                                            <input class="form-control" placeholder="Masukkan Nama Lengkap" name="name" type="text" >
+                                        </div>
+                                    </div>
                                     <div class="form-group mb-3">
                                         <div class="input-group input-group-alternative">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                             </div>
-                                            <input class="form-control" placeholder="Email" type="email">
+                                            <input class="form-control" placeholder="Msukkan Email" name="email" type="email" >
                                         </div>
                                     </div>
                                     <div class="form-group mb-3">
@@ -33,15 +41,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                                             </div>
-                                            <input class="form-control" placeholder="Username" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <div class="input-group input-group-alternative">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
-                                            </div>
-                                            <input class="form-control" placeholder="Full Name" type="text">
+                                            <input class="form-control" placeholder="Masukkan Username" name="username" type="text" >
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -50,7 +50,7 @@
                                                 <span class="input-group-text"><i
                                                         class="ni ni-lock-circle-open"></i></span>
                                             </div>
-                                            <input class="form-control" placeholder="Password" type="password">
+                                            <input class="form-control" placeholder="Masukkan Password" name="password" type="password" >
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -59,11 +59,11 @@
                                                 <span class="input-group-text"><i
                                                         class="ni ni-lock-circle-open"></i></span>
                                             </div>
-                                            <input class="form-control" placeholder="Konfirmasi Password" type="password">
+                                            <input class="form-control" placeholder="Masukkan Konfirmasi Password" name="conf_password" type="password" >
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="button" class="btn btn-primary my-4">Masuk</button>
+                                        <button type="submit" class="btn btn-primary my-4">Masuk</button>
                                     </div>
                                 </form>
                             </div>

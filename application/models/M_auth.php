@@ -38,5 +38,10 @@
 
             return false;
         }
+
+        public function do_register($data)
+        {
+            return $this->db->insert('users', $data);
+        }
     }
 ?>

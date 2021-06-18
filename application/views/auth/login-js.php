@@ -32,7 +32,7 @@
                 }, 1000);
             })
             .catch(err => {
-                console.log(err);
+                alert(err);
             })
         })
     });
