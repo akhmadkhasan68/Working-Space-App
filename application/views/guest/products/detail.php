@@ -74,11 +74,11 @@
 				<div class="row pick-size">
 					<div class="col-lg-6 col-md-6">
 						<label>Tanggal Reservasi</label>
-						<input type="text" class="form-control" placeholder="Tanggal Reservasi Awal">
+						<input type="text" class="form-control" name="start_date" id="start_date" placeholder="Tanggal Reservasi Awal">
 					</div>
 					<div class="col-lg-6 col-md-6">
 						<label>Tanggal Reservasi</label>
-						<input type="text" class="form-control" placeholder="Tanggal Reservasi Akhir">
+						<input type="text" class="form-control" name="end_date" id="end_date" placeholder="Tanggal Reservasi Akhir">
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-6">
 
@@ -86,8 +86,8 @@
 				</div>
 				<br>
 				<div class="row justify-content-start">
-					<button onclick="redirect(`<?php echo site_url('guest/transaction/create/1')?>`)"
-						class="btn btn-warning ml-3">Reservasi &nbsp;<i class="fa fa-ticket"></i></button>
+					<button onclick="create_transaction(`<?php echo site_url('guest/transaction/create/1')?>`)"
+						class="btn btn-warning ml-3 btn-block">Reservasi &nbsp;<i class="fa fa-ticket"></i></button>
 				</div>
 			</div>
 		</div>

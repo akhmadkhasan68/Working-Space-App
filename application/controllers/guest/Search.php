@@ -6,6 +6,7 @@ class Search extends CI_Controller {
 	{
 		$data['title'] = "Cari";
 		$data['view'] = $this->load->view("guest/search/index", $data, TRUE);
+		$data['view_js'] = $this->load->view("guest/search/index-js", $data, TRUE);
 
 		$this->template->__guest($data);
 	}

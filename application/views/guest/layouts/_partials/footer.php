@@ -40,6 +40,7 @@
 <script src="<?php echo base_url();?>assets/js/plugins/glide.js" type="text/javascript"></script>
 <!--  Plugin for the DatePicker, full documentation here: https://flatpickr.js.org/ -->
 <script src="<?php echo base_url();?>assets/js/plugins/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <!--	Plugin for Select, full documentation here: https://joshuajohnson.co.uk/Choices/ -->
 <script src="<?php echo base_url();?>assets/js/plugins/choices.min.js" type="text/javascript"></script>
 <!--  Plugin for the DateTimePicker, full documentation here: https://flatpickr.js.org/ -->
@@ -57,6 +58,13 @@
 </script>
 <!-- Sharrre libray -->
 <script src="<?php echo base_url();?>assets/demo/jquery.sharrre.js"></script>
+<!-- plugins -->
+<script src="<?php echo base_url();?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?php echo base_url();?>assets/plugins/toastr/toastr.min.js"></script>
+<?= $view_js;?>
+<script>
+    
+</script>
 <script>
 
 </script>

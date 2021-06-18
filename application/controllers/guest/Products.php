@@ -14,6 +14,7 @@ class Products extends CI_Controller {
     {
         $data['title'] = "Produk";
 		$data['view'] = $this->load->view("guest/products/detail", $data, TRUE);
+		$data['view_js'] = $this->load->view("guest/products/detail-js", $data, TRUE);
 
 		$this->template->__guest($data);
     }

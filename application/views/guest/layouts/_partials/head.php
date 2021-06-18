@@ -22,4 +22,9 @@
 	<link href="<?php echo base_url();?>assets/css/nucleo-svg.css" rel="stylesheet" />
 	<!-- CSS Files -->
 	<link href="<?php echo base_url();?>assets/css/argon-design-system.min2c70.css?v=1.0.3" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<!-- plugins -->
+	<link href="<?php echo base_url();?>assets/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/plugins/toastr/toastr.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/plugins/toastr/toastr.min.css" rel="stylesheet" />
 </head>

@@ -15,7 +15,7 @@
 			<div class="col-lg-5 col-md-5 col-12">
 				<div class="form-group">
 					<div class="input-group input-group-alternative mb-4">
-						<input type="text" class="form-control form-control-lg shadow" style="border-radius: 30px;"
+						<input type="text" class="form-control form-control-lg shadow" name="start_date" id="start_date" style="border-radius: 30px;"
 							placeholder="Tanggal Awal">
 					</div>
 				</div>
@@ -23,7 +23,7 @@
             <div class="col-lg-5 col-md-5 col-12">
 				<div class="form-group">
 					<div class="input-group input-group-alternative mb-4">
-						<input type="text" class="form-control form-control-lg shadow" style="border-radius: 30px;"
+						<input type="text" class="form-control form-control-lg shadow" name="end_date" id="end_date" style="border-radius: 30px;"
 							placeholder="Tanggal Akhir">
 					</div>
 				</div>
