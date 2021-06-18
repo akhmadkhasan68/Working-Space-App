@@ -105,4 +105,11 @@ class Auth extends CI_Controller {
 			'message' => 'Selamat akun anda berhasil dibuat!'
 		]);
 	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		
+		redirect('');
+	}
 }

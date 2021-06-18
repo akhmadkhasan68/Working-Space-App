@@ -61,6 +61,25 @@
 <!-- plugins -->
 <script src="<?php echo base_url();?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?php echo base_url();?>assets/plugins/toastr/toastr.min.js"></script>
+<script>
+    const logout = () => {
+        Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Apakah anda yakin akan keluar?",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			cancelButtonText: 'Batal',
+			confirmButtonText: 'Ya'
+		}).then((result) => {
+			if (result.value) {
+				window.location.href = `<?= site_url('auth/logout')?>`;
+			}
+		})
+    }
+
+</script>
 <?= $view_js;?>
 <script>
     

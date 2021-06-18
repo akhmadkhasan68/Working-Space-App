@@ -63,7 +63,11 @@
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary my-4">Masuk</button>
+                                        <button type="submit" class="btn btn-primary my-4">Daftar</button>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <small class="text-muted">Sudah punya akun? <a href="<?= site_url('auth/login')?>">Masuk</a></small>
                                     </div>
                                 </form>
                             </div>

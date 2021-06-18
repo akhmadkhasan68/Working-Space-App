@@ -1,6 +1,6 @@
 <div class="page-header header-filter ">
-	<div class="page-header-image"
-		style="background-image: url('<?php echo base_url()?>assets/img/sections/austin.jpg');"></div>
+	<!-- <div class="page-header-image" style="background-image: url('https://source.unsplash.com/random/500x500');"></div> -->
+	<div class="page-header-image" style="background-image: url('https://source.unsplash.com/random/800x600');"></div>
 	<div class="container pt-0">
 		<div class="row">
 			<div class="col-lg-6 col-md-7 mx-auto text-center">
@@ -36,7 +36,7 @@
 			<div class="col-lg-4 col-md-6">
 				<a href="<?php echo site_url('guest/products/detail/1')?>">
 					<div class="card card-product shadow">
-						<img class="card-img-top" src="<?php echo base_url()?>assets/img/sections/austin.jpg" alt="...">
+						<img class="card-img-top" src="https://source.unsplash.com/random/500x500" alt="...">
 						<div class="card-body">
 							<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
 							<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
@@ -59,7 +59,7 @@
 			<div class="col-lg-4 col-md-6">
 				<a href="<?php echo site_url('guest/products/detail/1')?>">
 					<div class="card card-product shadow">
-						<img class="card-img-top" src="<?php echo base_url()?>assets/img/sections/austin.jpg" alt="...">
+						<img class="card-img-top" src="https://source.unsplash.com/random/500x500" alt="...">
 						<div class="card-body">
 							<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
 							<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
@@ -82,7 +82,7 @@
 			<div class="col-lg-4 col-md-6">
 				<a href="<?php echo site_url('guest/products/detail/1')?>">
 					<div class="card card-product shadow">
-						<img class="card-img-top" src="<?php echo base_url()?>assets/img/sections/austin.jpg" alt="...">
+						<img class="card-img-top" src="https://source.unsplash.com/random/500x500" alt="...">
 						<div class="card-body">
 							<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
 							<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
@@ -119,7 +119,7 @@
 							<a href="<?php echo site_url('guest/products/detail/1')?>">
 								<div class="card card-product shadow">
 									<img class="card-img-top"
-										src="<?php echo base_url()?>assets/img/sections/austin.jpg" alt="...">
+										src="https://source.unsplash.com/random/500x500" alt="...">
 									<div class="card-body">
 										<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
 										<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
@@ -143,7 +143,7 @@
 							<a href="<?php echo site_url('guest/products/detail/1')?>">
 								<div class="card card-product shadow">
 									<img class="card-img-top"
-										src="<?php echo base_url()?>assets/img/sections/austin.jpg" alt="...">
+										src="https://source.unsplash.com/random/500x500" alt="...">
 									<div class="card-body">
 										<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
 										<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
@@ -167,7 +167,7 @@
 							<a href="<?php echo site_url('guest/products/detail/1')?>">
 								<div class="card card-product shadow">
 									<img class="card-img-top"
-										src="<?php echo base_url()?>assets/img/sections/austin.jpg" alt="...">
+										src="https://source.unsplash.com/random/500x500" alt="...">
 									<div class="card-body">
 										<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
 										<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
