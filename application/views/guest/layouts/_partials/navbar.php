@@ -46,13 +46,13 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item">
-						<a href="<?php echo site_url('guest/auth/login')?>" class="btn btn-white">
+						<a href="<?php echo site_url('auth/login')?>" class="btn btn-white">
 							<i class="ni ni-laptop d-lg-none"></i>
 							<span class="nav-link-inner--text">Masuk</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo site_url('guest/auth/register_guest')?>" class="btn btn-primary">
+						<a href="<?php echo site_url('auth/register_guest')?>" class="btn btn-primary">
 							<i class="ni ni-laptop d-lg-none"></i>
 							<span class="nav-link-inner--text">Daftar</span>
 						</a>

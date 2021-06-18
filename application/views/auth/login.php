@@ -18,13 +18,13 @@
                                 <div class="text-center text-muted mb-4">
                                     <small>Masukkan E-Mail dan Password Anda</small>
                                 </div>
-                                <form role="form">
+                                <form role="form" method="post" id="login_form">
                                     <div class="form-group mb-3">
                                         <div class="input-group input-group-alternative">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                                <span class="input-group-text"><i class="fa fa-user"></i></span>
                                             </div>
-                                            <input class="form-control" placeholder="Email" type="email">
+                                            <input class="form-control" placeholder="Masukkan Username atau Email" name="email" type="text" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -33,11 +33,11 @@
                                                 <span class="input-group-text"><i
                                                         class="ni ni-lock-circle-open"></i></span>
                                             </div>
-                                            <input class="form-control" placeholder="Password" type="password">
+                                            <input class="form-control" placeholder="Masukkan Password" name="password" type="password" required>
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="button" class="btn btn-primary my-4">Masuk</button>
+                                        <button type="submit" class="btn btn-primary my-4">Masuk</button>
                                     </div>
                                 </form>
                             </div>
@@ -51,11 +51,11 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-warning btn-block">Daftar Sebagai <br> member</button>
+                                <a href="<?= site_url('auth/register_guest')?>" class="btn btn-warning btn-block">Daftar Sebagai <br> member</a>
                             </div>
                             <div class="col-md-6">
-                                <button class="btn btn-outline-primary btn-block">Daftar Sebagai pemilik
-                                    tempat</button>
+                                <a href="<?= site_url('auth/register_owner')?>" class="btn btn-outline-primary btn-block">Daftar Sebagai pemilik
+                                    tempat</a>
                             </div>
                         </div>
                     </div>
