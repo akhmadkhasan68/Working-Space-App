@@ -59,8 +59,7 @@
 								<?php if ($this->session->userdata('role') == 'guest'):?>
 									<a class="dropdown-item" href="#"><i class="fa fa-history"></i> Riwayat Transaksi</a>
 								<?php else:?>
-									<a class="dropdown-item" href="#"><i class="fa fa-home"></i> Daftar Co-Working Anda</a>
-									<a class="dropdown-item" href="#"><i class="fa fa-plus"></i> Buat/Tambahkan Co-Working</a>
+									<a class="dropdown-item" href="<?= site_url('owner/myworkingspace')?>"><i class="fa fa-home"></i> Kelola Co-Working Anda</a>
 								<?php endif;?>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" onclick="logout()"><i class="fa fa-power-off"></i> Keluar</a>

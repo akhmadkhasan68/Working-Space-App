@@ -78,6 +78,7 @@ class Auth extends CI_Controller {
 				'error' => true,
 				'message' => $errors
 			]);
+			die;
 		}
 
 		$data = [
@@ -110,6 +111,6 @@ class Auth extends CI_Controller {
 	{
 		$this->session->sess_destroy();
 		
-		redirect('');
+		redirect('auth/login');
 	}
 }
