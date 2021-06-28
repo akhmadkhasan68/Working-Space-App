@@ -147,6 +147,28 @@
                                 <input class="custom-control-input" id="kamisCheckBox" type="checkbox">
                                 <label class="custom-control-label" for="kamisCheckBox">Centang jika hari ini aktif</label>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-alternative">
+                                        <div class="input-group input-group-alternative mb-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control form-control-alternative" id="exampleFormControlInput1" placeholder="Masukkan jam buka">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-alternative">
+                                        <div class="input-group input-group-alternative mb-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control form-control-alternative" id="exampleFormControlInput1" placeholder="Masukkan jam tutup">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>

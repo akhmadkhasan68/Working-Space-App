@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header">
-		<h4 class="card-title">Fasilitas</h4>
+		<h4 class="card-title font-weight-bold">Fasilitas</h4>
 	</div>
 	<div class="card-body">
 		<div class="row">
