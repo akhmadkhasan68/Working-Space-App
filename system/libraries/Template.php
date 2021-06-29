@@ -19,6 +19,6 @@ class CI_Template
     public function __admin($data) {
         $data["title"] = "WorkingSpace - $data[title]";
 
-        $this->CI->load->view('layouts/guest_master', $data);
+        $this->CI->load->view('layouts/admin_master', $data);
     }
 }

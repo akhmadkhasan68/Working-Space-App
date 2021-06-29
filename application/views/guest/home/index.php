@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-12 pl-0">
-                        <img class="ml-lg-5" src="<?php echo base_url();?>assets/img/ill/bg6-2.svg" width="100%">
+                        <img class="ml-lg-5" src="<?php echo base_url();?>assets/guest/img/ill/bg6-2.svg" width="100%">
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="card card-blog card-background" data-animation="zooming">
-                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/img/sections/austin.jpg">
+                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/guest/img/sections/austin.jpg">
                     </div>
                     <a href="javascript:;">
                         <div class="card-body">
@@ -100,7 +100,7 @@
             </div>
             <div class="col-lg-3">
                 <div class="card card-background" data-animation="zooming">
-                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/img/sections/austin.jpg">
+                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/guest/img/sections/austin.jpg">
                     </div>
                     <a href="javascript:;">
                         <div class="card-body">
@@ -115,7 +115,7 @@
             </div>
             <div class="col-lg-3">
                 <div class="card card-background" data-animation="zooming">
-                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/img/sections/austin.jpg">
+                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/guest/img/sections/austin.jpg">
                     </div>
                     <a href="javascript:;">
                         <div class="card-body">
@@ -130,7 +130,7 @@
             </div>
             <div class="col-lg-3">
                 <div class="card card-background" data-animation="zooming">
-                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/img/sections/austin.jpg">
+                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/guest/img/sections/austin.jpg">
                     </div>
                     <a href="javascript:;">
                         <div class="card-body">
@@ -168,13 +168,13 @@
                                 follow my dreams and inspire other people to follow their dreams.
                             </p>
                             <div class="author">
-                                <img src="<?php echo base_url();?>assets/img/faces/team-5.jpg" alt="..." class="avatar img-raised">
+                                <img src="<?php echo base_url();?>assets/guest/img/faces/team-5.jpg" alt="..." class="avatar img-raised">
                                 <span>Mike John</span>
                             </div>
                         </div>
                         <div class="card card-blog card-background" data-animation="true">
                             <div class="full-background"
-                                style="background-image: url('<?php echo base_url();?>assets/img/sections/austin.jpg')"></div>
+                                style="background-image: url('<?php echo base_url();?>assets/guest/img/sections/austin.jpg')"></div>
                             <div class="card-body">
                                 <div class="content-bottom ml-auto">
                                     <a href="javascript:void(0)" class="btn btn-round btn-simple btn-neutral"><i
@@ -198,13 +198,13 @@
                                 my world.
                             </p>
                             <div class="author">
-                                <img src="<?php echo base_url();?>assets/img/faces/team-3.jpg" alt="..." class="avatar img-raised">
+                                <img src="<?php echo base_url();?>assets/guest/img/faces/team-3.jpg" alt="..." class="avatar img-raised">
                                 <span>Andrew Lino</span>
                             </div>
                         </div>
                         <div class="card card-blog card-background" data-animation="true">
                             <div class="full-background"
-                                style="background-image: url('<?php echo base_url();?>assets/img/sections/unsplashs.jpg')"></div>
+                                style="background-image: url('<?php echo base_url();?>assets/guest/img/sections/unsplashs.jpg')"></div>
                             <div class="card-body">
                                 <div class="content-bottom ml-auto">
                                     <a href="javascript:void(0)" class="btn btn-round btn-simple btn-neutral"><i

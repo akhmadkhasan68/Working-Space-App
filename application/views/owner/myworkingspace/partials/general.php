@@ -58,6 +58,75 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label for="" class="font-weight-bold">Alamat</label>
+                    <textarea class="form-control form-control-alternative" rows="3" placeholder="Tulis alamat Co-Working anda disini..."></textarea>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div id="map" style='width: 100%; height: 300px;-webkit-box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);-moz-box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);'></div>
+                </div>
+            </div>
         </form>
     </div>
 </div>
+
+<script>
+    // let map = new mapboxgl.Map({
+    //     container: 'map',
+    //     style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+    //     center: [12.550343, 55.665957], // starting position [lng, lat]
+    //     zoom: 17, // starting zoom
+    // });
+
+    // let marker = new mapboxgl.Marker().setLngLat([12.550343, 55.665957]).addTo(map);
+
+    $(document).ready(() => {
+        getLocation();
+    });
+    
+    let marker = new mapboxgl.Marker({
+                        'color': '#ea4335'
+                    });
+
+    const getLocation = () => {
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition)
+        }else{
+            x.innerHTML = "Geolocation is not supported by this browser."
+        }
+    }
+
+    const showPosition = (position) => {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+
+        $("#longitude").val(longitude);
+        $("#latitude").val(latitude);
+
+        let map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+            center: [longitude, latitude], // starting position [lng, lat]
+            zoom: 17 // starting zoom
+        });
+        marker.setLngLat([longitude, latitude]).addTo(map);
+
+        map.on('click', function(e) {
+            // Use the returned LngLat object to set the marker location
+            // https://docs.mapbox.com/mapbox-gl-js/api/#lnglat
+            marker.setLngLat(e.lngLat).addTo(map);
+
+            // Create variables set to the LngLat object's lng and lat properties
+            var lng = e.lngLat.lng;
+            var lat = e.lngLat.lat;
+
+            $("#longitude").val(lng);
+            $("#latitude").val(lat);
+        });
+    }
+</script>

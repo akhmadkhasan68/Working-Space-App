@@ -1,6 +1,6 @@
 <div class="page-header header-filter page-header-small">
 	<div class="page-header-image"
-		style="background-image: url('<?php echo base_url()?>assets/img/pages/photo-15.jpg');"></div>
+		style="background-image: url('<?php echo base_url()?>assets/guest/img/pages/photo-15.jpg');"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-7 col-md-7 mr-auto text-left">
@@ -25,15 +25,15 @@
 					<div class="carousel-inner" role="listbox">
 						<div class="carousel-item">
 							<img class="d-block img-responsive img-fluid"
-								src="<?php echo base_url()?>assets/img/pages/shirt.png" alt="First slide">
+								src="<?php echo base_url()?>assets/guest/img/pages/shirt.png" alt="First slide">
 						</div>
 						<div class="carousel-item">
 							<img class="d-block img-responsive img-fluid"
-								src="<?php echo base_url()?>assets/img/pages/shorts.png" alt="Second slide">
+								src="<?php echo base_url()?>assets/guest/img/pages/shorts.png" alt="Second slide">
 						</div>
 						<div class="carousel-item active">
 							<img class="d-block img-responsive img-fluid"
-								src="<?php echo base_url()?>assets/img/pages/tshirt.png" alt="Third slide">
+								src="<?php echo base_url()?>assets/guest/img/pages/tshirt.png" alt="Third slide">
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
@@ -125,6 +125,11 @@
 							<a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-6-tab" data-toggle="tab"
 								href="#tabs-icons-text-6" role="tab" aria-controls="tabs-icons-text-6"
 								aria-selected="true"><i class="fa fa-comments mr-2"></i>Review Pengguna</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-7-tab" data-toggle="tab"
+								href="#tabs-icons-text-7" role="tab" aria-controls="tabs-icons-text-7"
+								aria-selected="true"><i class="fa fa-map-marker mr-2"></i>Lokasi</a>
 						</li>
 					</ul>
 				</div>
@@ -355,6 +360,25 @@
 									</div>
 								</div>
 							</div>
+
+							<div class="tab-pane fade" id="tabs-icons-text-7" role="tabpanel"
+								aria-labelledby="tabs-icons-text-7-tab">
+
+								<div class="row">
+									<div class="col-md-6">
+										<div class="card rounded shadow">
+											<div class="card-body" style="padding:0px;">
+												<div id="map" style='width: 100%; height: 300px;-webkit-box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);-moz-box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);'></div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<p>
+											Eres' daring 'Grigri Fortune' swimsuit has the fit and coverage of a bikini in a one-piece silhouette. This fuchsia style is crafted from the label's sculpting peau douce fabric and has flattering cutouts through the torso and back. Wear yours with mirrored sunglasses on vacation.
+										</p>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -372,7 +396,7 @@
 			<div class="col-lg-4 col-md-6">
 				<a href="<?php echo site_url('guest/products/detail/1')?>">
 					<div class="card card-product shadow">
-						<img class="card-img-top" src="<?php echo base_url()?>assets/img/sections/austin.jpg" alt="...">
+						<img class="card-img-top" src="<?php echo base_url()?>assets/guest/img/sections/austin.jpg" alt="...">
 						<div class="card-body">
 							<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
 							<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
@@ -395,7 +419,7 @@
 			<div class="col-lg-4 col-md-6">
 				<a href="<?php echo site_url('guest/products/detail/1')?>">
 					<div class="card card-product shadow">
-						<img class="card-img-top" src="<?php echo base_url()?>assets/img/sections/austin.jpg" alt="...">
+						<img class="card-img-top" src="<?php echo base_url()?>assets/guest/img/sections/austin.jpg" alt="...">
 						<div class="card-body">
 							<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
 							<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
@@ -418,7 +442,7 @@
 			<div class="col-lg-4 col-md-6">
 				<a href="<?php echo site_url('guest/products/detail/1')?>">
 					<div class="card card-product shadow">
-						<img class="card-img-top" src="<?php echo base_url()?>assets/img/sections/austin.jpg" alt="...">
+						<img class="card-img-top" src="<?php echo base_url()?>assets/guest/img/sections/austin.jpg" alt="...">
 						<div class="card-body">
 							<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
 							<span class="d-inline p-2 pull-right badge badge-success">NEW</span>

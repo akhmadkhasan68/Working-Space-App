@@ -24,7 +24,7 @@
 					<a class="nav-link" data-toggle="pill" href="#" onclick="renderPage(`<?= site_url('owner/myworkingspace/render/contact') ?>`)"><i class="fa fa-phone"></i> Kontak</a>
 					<a class="nav-link" data-toggle="pill" href="#" onclick="renderPage(`<?= site_url('owner/myworkingspace/render/menu') ?>`)"><i class="fa fa-cutlery"></i> Menu</a>
 					<a class="nav-link" data-toggle="pill" href="#" onclick="renderPage(`<?= site_url('owner/myworkingspace/render/review') ?>`)"><i class="fa fa-comment"></i> Lihat Review</a>
-					<a class="nav-link" data-toggle="pill" href="#" onclick="renderPage(`<?= site_url('owner/myworkingspace/render/reservation') ?>`)"><i class="fa fa-ticket"></i> Reservasi</a>
+					<a class="nav-link" data-toggle="pill" href="#" onclick="renderPage(`<?= site_url('owner/myworkingspace/render/reservation') ?>`)"><i class="fa fa-ticket"></i> Reservasi <span class="badge badge-success">5</span></a>
 				</div>
 			</div>
 			<div class="col-md-9" id="page-content">

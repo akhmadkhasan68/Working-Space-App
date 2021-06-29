@@ -58,7 +58,7 @@
 								<a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profil</a>
 								<?php if ($this->session->userdata('role') == 'guest'):?>
 									<a class="dropdown-item" href="#"><i class="fa fa-history"></i> Riwayat Transaksi</a>
-								<?php else:?>
+								<?php elseif($this->session->userdata('role') == "owner"):?>
 									<a class="dropdown-item" href="<?= site_url('owner/myworkingspace')?>"><i class="fa fa-home"></i> Kelola Co-Working Anda</a>
 								<?php endif;?>
 								<div class="dropdown-divider"></div>

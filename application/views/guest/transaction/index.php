@@ -1,6 +1,6 @@
 <div class="page-header header-filter page-header-small">
 	<div class="page-header-image"
-		style="background-image: url('<?php echo base_url()?>assets/img/pages/photo-15.jpg');"></div>
+		style="background-image: url('<?php echo base_url()?>assets/guest/img/pages/photo-15.jpg');"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-7 col-md-7 mr-auto text-left">
@@ -32,17 +32,17 @@
 									<div class="carousel-inner" role="listbox">
 										<div class="carousel-item">
 											<img class="d-block img-responsive img-fluid"
-												src="<?php echo base_url()?>assets/img/pages/shirt.png"
+												src="<?php echo base_url()?>assets/guest/img/pages/shirt.png"
 												alt="First slide">
 										</div>
 										<div class="carousel-item">
 											<img class="d-block img-responsive img-fluid"
-												src="<?php echo base_url()?>assets/img/pages/shorts.png"
+												src="<?php echo base_url()?>assets/guest/img/pages/shorts.png"
 												alt="Second slide">
 										</div>
 										<div class="carousel-item active">
 											<img class="d-block img-responsive img-fluid"
-												src="<?php echo base_url()?>assets/img/pages/tshirt.png"
+												src="<?php echo base_url()?>assets/guest/img/pages/tshirt.png"
 												alt="Third slide">
 										</div>
 									</div>

@@ -28,7 +28,7 @@
                 });
 
                 setTimeout(() => {
-                    window.location.href = `<?= site_url('')?>`;
+                    window.location.href = `${res.redirect}`;
                 }, 1000);
             })
             .catch(err => {

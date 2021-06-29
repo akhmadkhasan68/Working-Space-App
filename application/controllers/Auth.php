@@ -10,7 +10,7 @@ class Auth extends CI_Controller {
 
 	public function login()
 	{
-		if($this->session->userdata('is_login'))
+		if($this->session->userdata('is_login') && $this->session->userdata('role') != 'admin')
 		{
 			redirect('');
 		}
@@ -59,7 +59,8 @@ class Auth extends CI_Controller {
 
 		print json_encode([
 			'error' => false,
-			'message' => 'Selamat datang!'
+			'message' => 'Selamat datang!',
+			'redirect' => ($this->session->userdata('role') == "admin") ? site_url('admin/dashboard') : site_url('')
 		]);
 	}
 

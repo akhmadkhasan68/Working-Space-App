@@ -40,4 +40,13 @@
 			}
 		})
     }
+
+    let map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: [12.550343, 55.665957], // starting position [lng, lat]
+        zoom: 17, // starting zoom
+    });
+
+    let marker = new mapboxgl.Marker().setLngLat([12.550343, 55.665957]).addTo(map);
 </script>
