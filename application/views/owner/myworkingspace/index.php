@@ -1,6 +1,6 @@
 <div class="page-header header-filter page-header-small">
 	<div class="page-header-image"
-		style="background-image: url('<?php echo base_url()?>assets/img/pages/photo-15.jpg');"></div>
+		style="background-image: url('<?php echo base_url()?>assets/guest/img/pages/photo-15.jpg');"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-7 col-md-7 mr-auto text-left">
