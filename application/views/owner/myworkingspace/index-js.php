@@ -52,8 +52,8 @@
     }
 
     const showPosition = (position) => {
-        let latitude = ($("#latitude").val() === "") ? position.coords.latitude : $("latitude").val();
-        let longitude = ($("#longitude").val() === "") ? position.coords.longitude : $("longitude").val();
+        let latitude = ($("#latitude").val() === "") ? position.coords.latitude : $("#latitude").val();
+        let longitude = ($("#longitude").val() === "") ? position.coords.longitude : $("#longitude").val();
 
         $("#longitude").val(longitude);
         $("#latitude").val(latitude);

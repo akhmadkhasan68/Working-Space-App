@@ -56,7 +56,7 @@
             return $this->db->select('*')
                     ->from('places_payments a')
                     ->join('places b', 'b.id = a.place_id')
-                    ->join('payments c', 'c.id = b.payment_id')
+                    ->join('payments c', 'c.id = a.payment_id')
                     ->get()
                     ->result();
         }

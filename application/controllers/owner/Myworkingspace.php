@@ -33,39 +33,4 @@ class Myworkingspace extends CI_Controller {
 
 		$this->load->view("owner/myworkingspace/partials/$page", $data);
 	}
-
-	public function uploadImg()
-	{
-		$config['upload_path'] = 'uploads/photos/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size']  = '1000';
-        $config['max_width']  = '1024';
-        $config['max_height']  = '768';
-		$config['encrypt_name'] = true;
-
-		$this->upload->initialize($config);
-
-        if (!$this->upload->do_upload('file')){
-            $messages = $this->upload->display_errors();
-
-			print json_encode([
-				'error' => true,
-				'message' => $messages
-			]);
-			die();
-        }
-        
-		$dataupload = $this->upload->data();
-
-		$this->db->insert('place_photos', [
-			'place_id' => $this->input->get_post('place_id'),
-			'photo' => $dataupload['file_name']
-		]);
-
-        print json_encode([	
-			'error' => false,
-			'message' => 'Selamat, anda berhasil menambahkan gambar!',
-			'data' => $dataupload
-		]);
-	}
 }

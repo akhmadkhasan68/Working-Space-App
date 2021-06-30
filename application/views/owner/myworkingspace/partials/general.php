@@ -64,7 +64,7 @@
                     <select name="province_id" class="form-control form-control-alternative" id="province_id">
                         <option value="">Pilih Provinsi</option>
                         <?php foreach($provinces as $province):?>
-                            <option value="<?= $province->id ?>"><?=$province->name ?></option>
+                            <option value="<?= $province->id ?>" <?= (isset($data['general']) && $data['general']->province_id == $province->id) ? 'selected' : ''?>><?=$province->name ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -73,7 +73,7 @@
                     <select name="regency_id" class="form-control form-control-alternative" id="regency_id">
                         <option value="">Pilih Kota/Kabupaten</option>
                         <?php foreach($regencies as $regency):?>
-                            <option value="<?= $regency->id?>"><?=$regency->name?></option>
+                            <option value="<?= $regency->id?>" <?= (isset($data['general']) && $data['general']->regency_id == $regency->id) ? 'selected' : ''?>><?=$regency->name?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -82,7 +82,7 @@
                     <select name="district_id" class="form-control form-control-alternative" id="district_id">
                         <option value="">Pilih Kecamatan</option>
                         <?php foreach($districts as $district):?>
-                            <option value="<?= $district->id?>"><?=$district->name?></option>
+                            <option value="<?= $district->id?>" <?= (isset($data['general']) && $data['general']->district_id == $district->id) ? 'selected' : ''?>><?=$district->name?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -91,7 +91,7 @@
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="" class="font-weight-bold">Alamat</label>
-                    <textarea name="address" class="form-control form-control-alternative" rows="3" placeholder="Tulis alamat Co-Working anda disini..."></textarea>
+                    <textarea name="address" class="form-control form-control-alternative" rows="3" placeholder="Tulis alamat Co-Working anda disini..."><?= isset($data['general']) ? $data['general']->address : ''?></textarea>
                 </div>
             </div>
 
@@ -126,7 +126,7 @@
         data.append('place_id', place_id);
 
         $.ajax({
-            url: `<?= site_url('owner/myworkingspace/uploadImg')?>`,
+            url: `<?= site_url('owner/general/uploadImg')?>`,
             data: data,
             dataType: 'json',
             cache: false,
@@ -185,6 +185,45 @@
             $("#district_id").html(html);
         }).fail(err => {
             console.log(err)
+        });
+    });
+
+    $("#formGeneral").on('submit', e => {
+        e.preventDefault();
+        let data = $(e.currentTarget).serialize();
+
+        $.ajax({
+            url: `<?= site_url('owner/general/update')?>`,
+            method: 'post',
+            data: data,
+            dataType: 'json'
+        }).then(res => {
+            if (res.error) {
+                if(Object.keys(res.message).length > 1)
+                {
+                    Object.entries(res.message).forEach(([key, val]) => {
+                        toastr.error(val, 'Gagal');    
+                    });
+                }
+                else
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: res.message
+                    });
+                }
+
+                return;
+            }
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: res.message
+            });
+        }).fail(err => {
+            console.log(err);
         });
     });
 </script>
