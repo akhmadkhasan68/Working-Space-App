@@ -12,16 +12,18 @@
 			</div>
 		</div>
 
-        <small class="text-muted"><span id="total-added-facilities">2</span> Fasilitas ditambahkan</small>
+        <small class="text-muted"><span id="total-added-facilities"><?= count($data['places_facilities']);?></span> Fasilitas ditambahkan</small>
 
         <div class="row mt-3">
             <div class="col-md-12">
-                <button type="button" onclick="adjustFacilities(1, `add`)" class="btn btn-success btn-round">
-                    <span class="fa fa-building"></span> <span>Musholla</span>
-                    <span class="fa fa-plus-circle"></span>
-                </button>
+                <?php foreach ($data['facilities'] as $k_data => $v_data):?>
+                    <button type="button" onclick="adjustFacilities(<?= $v_data->id ?>, `<?= (isset($v_data->facility_id)) ? 'destroy' : 'add'?>`)" class="btn btn-<?= (isset($v_data->facility_id)) ? 'danger' : 'success'?> btn-round mb-3">
+                        <span><?= $v_data->name?></span>
+                        <span class="fa fa-<?= (isset($v_data->facility_id)) ? 'minus' : 'plus'?>-circle"></span>
+                    </button>
+                <?php endforeach;?>
 
-                <button type="button" onclick="adjustFacilities(1, `destroy`)" class="btn btn-danger btn-round">
+                <!-- <button type="button" onclick="adjustFacilities(1, `destroy`)" class="btn btn-danger btn-round">
                     <span class="fa fa-male"></span><span class="fa fa-female"></span> <span>Toilet</span>
                     <span class="fa fa-minus-circle"></span>
                 </button>
@@ -39,7 +41,7 @@
                 <button type="button" onclick="adjustFacilities(1, `add`)" class="btn btn-success btn-round">
                     <span class="fa fa-cutlery"></span> <span>Free Eat</span>
                     <span class="fa fa-plus-circle"></span>
-                </button>
+                </button> -->
             </div>
         </div>
 	</div>

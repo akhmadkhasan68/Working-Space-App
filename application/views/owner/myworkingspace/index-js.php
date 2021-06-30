@@ -25,18 +25,48 @@
     }
 
     const adjustFacilities = (id, status) => {
-        let element = $("#total-added-facilities");
-        let add;
-
         if(status === "destroy"){
-            add = parseInt(element.text()) - 1
+            $.ajax({
+                url: `<?= site_url('owner/facilities/destroy') ?>`,
+                data: {
+                    facility_id: id
+                },
+                dataType: 'json',
+                method: 'post'
+            }).then(res => {
+                if(res.error)
+                {
+                    toastr.error(`${res.message}`, 'Gagal')
+                }else
+                {
+                    toastr.success(`${res.message}`, 'Berhasil');
+                }
+
+            }).fail(err => {
+                console.log(err);
+            });
         }else{
-            add = parseInt(element.text()) + 1
+            $.ajax({
+                url: `<?= site_url('owner/facilities/add') ?>`,
+                data: {
+                    facility_id: id
+                },
+                dataType: 'json',
+                method: 'post'
+            }).then(res => {
+                if(res.error)
+                {
+                    toastr.error(`${res.message}`, 'Gagal')
+                }else{
+                    toastr.success(`${res.message}`, 'Berhasil');
+                }
+
+            }).fail(err => {
+                console.log(err);
+            });
         }
 
-        element.html(add)
-
-        $(this).toggleClass('btn btn-danger btn-round');
+        renderPage(`<?= site_url('owner/myworkingspace/render/facilities') ?>`)
     }
 
      
