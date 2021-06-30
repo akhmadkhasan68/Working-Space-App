@@ -25,19 +25,16 @@
 
             if(!empty($cek))
             {
-                if(isset($bank)){
-                    $value .= " ($bank)";
+                if(!empty($value))
+                {
+                    //update
+                    $this->db->where('id', $cek->id)->update('places_payments', ['value' => $value]);
+                }else{
+                    $this->db->where('id', $cek->id)->delete('places_payments');
                 }
-
-                //update
-                $this->db->where('id', $cek->id)->update('places_payments', ['value' => $value]);
             }
             else
             {
-                if(isset($bank)){
-                    $value .= " ($bank)";
-                }
-
                 //insert
                 $data = [
                     'place_id' => $place_id,

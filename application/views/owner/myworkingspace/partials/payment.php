@@ -21,23 +21,23 @@
                             <td>
                                 <?php if($v_data->is_bank == 1):?>
                                     <?php
-                                        if( preg_match( '!\(([^\)]+)\)!', $v_data->value, $match ))
+                                        if( preg_match( '!\(([^\)]+)\)!', $v_data->value, $match))
                                             $bank = $match[1];  
                                     ?>
                                     <div class="form-group">
                                         <div class="input-group input-group-alternative mb-4">
                                             <div class="input-group-prepend mr-3">
-                                                <select name="" id="bank" class="form-control form-control-alternative">
+                                                <select name="" data-payment_id="<?= $v_data->id?>" id="bank" class="form-control form-control-alternative">
                                                     <option value="">Pilih Bank</option>
-                                                    <option value="BNI" <?= ($bank == 'BNI') ? 'selected' : ''?>>BNI</option>
-                                                    <option value="BRI" <?= ($bank == 'BRI') ? 'selected' : ''?>>BRI</option>
-                                                    <option value="BSI" <?= ($bank == 'BSI') ? 'selected' : ''?>>BSI</option>
-                                                    <option value="Mandiri" <?= ($bank == 'Mandiri') ? 'selected' : ''?>>Mandiri</option>
-                                                    <option value="BCA" <?= ($bank == 'BCA') ? 'selected' : ''?>>BCA</option>
-                                                    <option value="Permata" <?= ($bank == 'Permata') ? 'selected' : ''?>>Permata</option>
+                                                    <option value="BNI" <?= (isset($bank) && $bank == 'BNI') ? 'selected' : ''?>>BNI</option>
+                                                    <option value="BRI" <?= (isset($bank) && $bank == 'BRI') ? 'selected' : ''?>>BRI</option>
+                                                    <option value="BSI" <?= (isset($bank) && $bank == 'BSI') ? 'selected' : ''?>>BSI</option>
+                                                    <option value="Mandiri" <?= (isset($bank) && $bank == 'Mandiri') ? 'selected' : ''?>>Mandiri</option>
+                                                    <option value="BCA" <?= (isset($bank) && $bank == 'BCA') ? 'selected' : ''?>>BCA</option>
+                                                    <option value="Permata" <?= (isset($bank) && $bank == 'Permata') ? 'selected' : ''?>>Permata</option>
                                                 </select>
                                             </div>
-                                            <input class="form-control form-control-alternative" placeholder="Masukkan nomor disini..." type="text" onchange="savePayment(this, `<?= $v_data->id?>`)" value="<?= str_replace($match[0], '', $v_data->value)?>">
+                                            <input id="bankValue" class="form-control form-control-alternative" placeholder="Masukkan nomor disini..." type="text" onchange="savePaymentBank(this, `<?= $v_data->id?>`)" value="<?= (isset($match[0])) ? str_replace($match[0], '', $v_data->value) : $v_data->value ?>">
                                         </div>
                                         <span class="text-danger">*Kosongi jika tidak menggunakan metode pembayaran ini</span>
                                     </div>
@@ -59,17 +59,17 @@
 </div>
 
 <script>
-    const savePayment = (e, payment_id) => {
-        let value = e.value;
-        let bank = $("#bank").val();
+    $("#bank").on('change', e => {
+        let bank = $(e.currentTarget).val();
+        let value = `${$('#bankValue').val()} (${bank})`;
+        let payment_id = $(e.currentTarget).data('payment_id');
 
         $.ajax({
             url: `<?= site_url('owner/payments/save')?>`,
             method: 'POST',
             data: {
                 payment_id: payment_id,
-                value: value,
-                bank: bank
+                value: value
             },
             dataType: 'json'
         }).then(res => {
@@ -77,5 +77,5 @@
         }).fail(err => {
             console.log(err)
         });
-    }
+    });
 </script>

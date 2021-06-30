@@ -6,15 +6,16 @@
     })
 
     const renderPage = (url) => {
-        contentSection.html("");
+        // contentSection.empty();
 
         $.ajax({
             url: url,
             method: 'GET',
         }).then(res => {
-            contentSection.html(res)
+            contentSection.empty().append(res);
         }).fail(err => {
-            contentSection.html(`Failed render the content`)
+            contentSection.empty().append(`Failed render the content`);
+            // contentSection.html(`Failed render the content`)
             console.log(err);
         });
     }
@@ -77,6 +78,45 @@
 
             $("#longitude").val(lng);
             $("#latitude").val(lat);
+        });
+    }
+
+    const savePayment = (e, payment_id) => {
+        let value = e.value;
+
+        $.ajax({
+            url: `<?= site_url('owner/payments/save')?>`,
+            method: 'POST',
+            data: {
+                payment_id: payment_id,
+                value: value
+            },
+            dataType: 'json'
+        }).then(res => {
+            toastr.success(res.message, 'Berhasil');
+        }).fail(err => {
+            console.log(err)
+        });
+    }
+
+    const savePaymentBank = (e, payment_id) => {
+        let bank = $("#bank").val();
+        let value = `${e.value} (${bank})`;
+
+        console.log(value);
+
+        $.ajax({
+            url: `<?= site_url('owner/payments/save')?>`,
+            method: 'POST',
+            data: {
+                payment_id: payment_id,
+                value: value
+            },
+            dataType: 'json'
+        }).then(res => {
+            toastr.success(res.message, 'Berhasil');
+        }).fail(err => {
+            console.log(err)
         });
     }
 </script>
