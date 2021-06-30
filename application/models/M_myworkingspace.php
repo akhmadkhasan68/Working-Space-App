@@ -53,10 +53,10 @@
 
         private function dataPayment($user_id)
         {
-            return $this->db->select('*')
-                    ->from('places_payments a')
-                    ->join('places b', 'b.id = a.place_id')
-                    ->join('payments c', 'c.id = a.payment_id')
+            return $this->db->select('c.*, a.id as id_payment_place, a.`value`, a.place_id, b.`name` as place')
+                    ->from("places_payments a")
+                    ->join("places b", "b.id = a.place_id and b.user_id = $user_id")
+                    ->join("payments c", "c.id = a.payment_id", "right")
                     ->get()
                     ->result();
         }
