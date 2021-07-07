@@ -20,6 +20,14 @@
             {
                 $data = $this->dataOperational($user_id);
             }
+            elseif($page == "contact")
+            {
+                $contacts = ["Whatsapp", "Instagram", "Twitter", "Facebook", "Email", "Website"];
+                foreach($contacts as $k_contact => $v_contact)
+                {
+                    $data[$v_contact] = $this->dataContacts($user_id, $v_contact);
+                }
+            }
 
             return $data;
         }
@@ -95,6 +103,16 @@
                 return $this->db->select("c.*, a.id as id_schedule, a.open, a.close")->from("place_schedules a")
                         ->join("places b", "b.id = a.place_id and b.user_id = $user_id")
                         ->join("day c", "c.id = a.day_id", 'right')->get()->result();
+        }
+
+        private function dataContacts($user_id, $type)
+        {
+            return $this->db->select('a.*')->from('place_contacts a')
+                    ->join('places b', 'b.id = a.place_id')
+                    ->where('b.user_id', $user_id)
+                    ->where('a.type', $type)
+                    ->get()
+                    ->row();
         }
     }
 ?>

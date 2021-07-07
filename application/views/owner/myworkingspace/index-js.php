@@ -182,10 +182,31 @@
             }
         }).
         then(res => {
-            console.log(res)
+            toastr.success(res.message, 'Berhasil');
         }).
         fail(err => {
             console.log(err)
         });
+
+        renderPage(`<?= site_url('owner/myworkingspace/render/operational') ?>`)
+    }
+
+    const deleteContacts = id => {
+        $.ajax({
+            url: `<?= site_url('owner/contacts/delete')?>`,
+            method: 'post',
+            dataType: 'json',
+            data: {
+                id: id
+            },
+        }).
+        then(res => {
+            toastr.success(res.message, 'Berhasil');
+        }).
+        fail(err => {
+            console.log(err)
+        });
+
+        renderPage(`<?= site_url('owner/myworkingspace/render/contact') ?>`)
     }
 </script>
