@@ -149,4 +149,43 @@
             console.log(err)
         });
     }
+
+    const saveDay = (day_id, e) => {
+        $.ajax({
+            url: `<?= site_url('owner/operational/save_day')?>`,
+            method: 'post',
+            dataType: 'json',
+            data: {
+                day_id: day_id,
+                status: (e.checked) ? 1 : 0
+            }
+        }).
+        then(res => {
+            toastr.success(res.message, 'Berhasil');
+        }).
+        fail(err => {
+            console.log(err)
+        })
+
+        renderPage(`<?= site_url('owner/myworkingspace/render/operational') ?>`)
+    }
+
+    const saveTime = (id, column, e) => {
+        $.ajax({
+            url: `<?= site_url('owner/operational/save_time')?>`,
+            method: 'post',
+            dataType: 'json',
+            data: {
+                id: id,
+                column: column,
+                value: e.value
+            }
+        }).
+        then(res => {
+            console.log(res)
+        }).
+        fail(err => {
+            console.log(err)
+        });
+    }
 </script>

@@ -22,26 +22,6 @@
                         <span class="fa fa-<?= (isset($v_data->facility_id)) ? 'minus' : 'plus'?>-circle"></span>
                     </button>
                 <?php endforeach;?>
-
-                <!-- <button type="button" onclick="adjustFacilities(1, `destroy`)" class="btn btn-danger btn-round">
-                    <span class="fa fa-male"></span><span class="fa fa-female"></span> <span>Toilet</span>
-                    <span class="fa fa-minus-circle"></span>
-                </button>
-
-                <button type="button" onclick="adjustFacilities(1, `destroy`)" class="btn btn-danger btn-round">
-                    <span class="fa fa-wifi"></span> <span>Free Wifi</span>
-                    <span class="fa fa-minus-circle"></span>
-                </button>
-
-                <button type="button" onclick="adjustFacilities(1, `add`)" class="btn btn-success btn-round">
-                    <span class="fa fa-building"></span> <span>Meeting Room</span>
-                    <span class="fa fa-plus-circle"></span>
-                </button>
-
-                <button type="button" onclick="adjustFacilities(1, `add`)" class="btn btn-success btn-round">
-                    <span class="fa fa-cutlery"></span> <span>Free Eat</span>
-                    <span class="fa fa-plus-circle"></span>
-                </button> -->
             </div>
         </div>
 	</div>

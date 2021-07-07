@@ -16,6 +16,10 @@
                 $data['facilities'] = $this->dataFacilities($user_id);
                 $data['places_facilities'] = $this->dataPlacesFacilities($user_id);
             }
+            elseif($page == "operational")
+            {
+                $data = $this->dataOperational($user_id);
+            }
 
             return $data;
         }
@@ -76,12 +80,21 @@
             ->result();
         }
 
+        
+
         private function dataPlacesFacilities($user_id)
         {
             return $this->db->select('*')->from('places_facilities a')
                     ->join('facilities b', 'b.id = a.facility_id')
                     ->join('places c', 'c.id = a.place_id')
                     ->where(['c.user_id' => $user_id])->get()->result();
+        }
+
+        private function dataOperational($user_id)
+        {
+                return $this->db->select("c.*, a.id as id_schedule, a.open, a.close")->from("place_schedules a")
+                        ->join("places b", "b.id = a.place_id and b.user_id = $user_id")
+                        ->join("day c", "c.id = a.day_id", 'right')->get()->result();
         }
     }
 ?>
