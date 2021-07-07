@@ -56,6 +56,10 @@
         }).
         then(res => {
             toastr.success(res.message, 'Berhasil');
+
+            setTimeout(() => {
+                renderPage(`<?= site_url('owner/myworkingspace/render/contact') ?>`)
+            }, 1000);
         }).
         fail(err => {
             console.log(err)

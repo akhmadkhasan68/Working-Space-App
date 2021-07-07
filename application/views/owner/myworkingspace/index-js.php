@@ -202,11 +202,82 @@
         }).
         then(res => {
             toastr.success(res.message, 'Berhasil');
+
+            setTimeout(() => {
+                renderPage(`<?= site_url('owner/myworkingspace/render/contact') ?>`)
+            }, 1000);
         }).
         fail(err => {
             console.log(err)
         });
+    }
 
-        renderPage(`<?= site_url('owner/myworkingspace/render/contact') ?>`)
+    const renderTableMenu = (filter) => {
+        $.ajax({
+            url: `<?= site_url('owner/menu/get_table')?>`,
+            method: 'get',
+            dataType: 'json',
+            data: {
+                filter: filter
+            }
+        }).
+        then(res => {
+            let html = ``;
+            if(Object.keys(res.data).length > 0)
+            {
+                let no = 1;
+                Object.entries(res.data).forEach(([key, val]) => {
+                    html += `
+                        <tr>
+                            <td>${no++}</td>
+                            <td>${val.name}</td>
+                            <td>Rp. ${convertRupiah(val.price)}</td>
+                            <td><span class="badge badge-success">${convertTypeMenu(val.type)}</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `;    
+                });
+            }else{
+                html += `
+                    <tr>
+                        <td colspan=5><center>Data Kosong!</center></td>
+                    </tr>
+                `;
+            }
+
+            $(`#menu-tablebody`).html(html);
+        }).
+        fail(err => {
+            console.log(err)
+        });
+    }
+
+    const convertTypeMenu = (type) => {
+        if(type == 'food') {
+            return 'Makanan';
+        }else if(type == 'baverage'){
+            return 'Minuman';
+        }else if(type == 'snack'){
+            return 'Snack';
+        }else{
+            return 'Other';
+        }
+    }
+
+    const convertRupiah = (number) => {
+        let	str_number = number.toString(),
+        sisa 	= str_number.length % 3,
+        rupiah 	= str_number.substr(0, sisa),
+        ribuan 	= str_number.substr(sisa).match(/\d{3}/g);
+            
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        return rupiah
     }
 </script>

@@ -14,12 +14,12 @@
 
         <div class="row">
             <div class="col-lg-12 col-12">
-                <select name="" id="" class="form-control">
+                <select name="filter" id="filter" class="form-control">
                     <option value="">Filter Jenis Menu</option>
-                    <option value="">Makanan</option>
-                    <option value="">Minuman</option>
-                    <option value="">Snack</option>
-                    <option value="">Lainnya</option>
+                    <option value="food">Makanan</option>
+                    <option value="baverage">Minuman</option>
+                    <option value="snack">Snack</option>
+                    <option value="other">Lainnya</option>
                 </select>
             </div>
         </div>
@@ -37,8 +37,8 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="menu-tablebody">
+                            <!-- <tr>
                                 <td>1</td>
                                 <td>Es Degan</td>
                                 <td>Rp. 12.000</td>
@@ -47,7 +47,7 @@
                                     <button class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>
                                     <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -55,3 +55,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(() => {
+        renderTableMenu(null);
+    });
+
+    $("#filter").on('change', function(){
+        renderTableMenu($(this).val());
+    });
+</script>

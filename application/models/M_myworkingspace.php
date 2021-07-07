@@ -28,6 +28,10 @@
                     $data[$v_contact] = $this->dataContacts($user_id, $v_contact);
                 }
             }
+            elseif($page == "menu")
+            {
+                $data = $this->dataMenu($user_id);
+            }
 
             return $data;
         }
@@ -113,6 +117,13 @@
                     ->where('a.type', $type)
                     ->get()
                     ->row();
+        }
+
+        private function dataMenu($user_id)
+        {
+            return $this->db->select('a.*')->from('menus a')
+                    ->join('places b', 'b.id = a.place_id')
+                    ->where('b.user_id', $user_id)->get()->result();
         }
     }
 ?>
