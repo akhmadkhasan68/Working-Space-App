@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-lg-7 col-md-7 mr-auto text-left">
 				<h1 class="title text-white">Detail Co-Working Space</h1>
-				<h4 class="category text-white opacity-8">7 Chiken Co-Working Space</h4>
+				<h4 class="category text-white opacity-8"><?= $place['name']?></h4>
 			</div>
 		</div>
 	</div>
@@ -49,7 +49,7 @@
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-12 mx-auto">
-				<h2 class="title font-weight-bold">7 Chiken Co-Working Space</h2>
+				<h2 class="title font-weight-bold"><?= $place['name']?></h2>
 				<div class="stats">
 					<div class="stars text-warning">
 						<i class="fas fa-star"></i>
@@ -57,18 +57,16 @@
 						<i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
 						<i class="far fa-star"></i>
-						<p class="d-inline">(76 customer reviews)</p>
+						<p class="d-inline">(76 reviews)</p>
 					</div>
 				</div>
 
 
-				<h2 class="main-price d-inline">Rp. 20.000</h2>
+				<h2 class="main-price d-inline">Rp. <?= number_format($place['price'], 0, ',', '.')?></h2>
 				<small class="text-muted d-inline">/Jam</small>
 
 				<h6 class="category mt-3">Deskripsi</h6>
-				<p class="description">Eres' daring 'Grigri Fortune' swimsuit has the fit and coverage of a bikini in a
-					one-piece silhouette. This fuchsia style is crafted from the label's sculpting peau douce fabric and
-					has flattering cutouts through the torso and back. Wear yours with mirrored sunglasses on vacation.
+				<p class="description"><?= $place['description']?>
 				</p>
 				<br>
 				<div class="row pick-size">
@@ -86,8 +84,7 @@
 				</div>
 				<br>
 				<div class="row justify-content-start">
-					<button onclick="create_transaction(`<?php echo site_url('guest/transaction/create/1')?>`)"
-						class="btn btn-warning ml-3 btn-block">Reservasi &nbsp;<i class="fa fa-ticket"></i></button>
+					<button onclick="create_transaction(`<?php echo site_url('guest/transaction/create')?>/<?= $place['id']?>`)" class="btn btn-warning ml-3 btn-block">Reservasi &nbsp;<i class="fa fa-ticket"></i></button>
 				</div>
 			</div>
 		</div>
@@ -141,18 +138,11 @@
 								aria-labelledby="tabs-icons-text-1-tab">
 								<div class="row align-items-center justify-content-md-between">
 									<div class="col-md-12">
-										<span class="badge badge-success badge-pill ml-2 mt-2"><i
-												class="fa fa-building"></i> Musholla</span>
-										<span class="badge badge-warning badge-pill ml-2 mt-2"><i
-												class="fa fa-wifi"></i> Free Wifi</span>
-										<span class="badge badge-info badge-pill ml-2 mt-2"><i
-												class="fa fa-building"></i> Toilet</span>
-										<span class="badge badge-primary badge-pill ml-2 mt-2"><i
-												class="fa fa-building"></i> Wastafel</span>
-										<span class="badge badge-success badge-pill ml-2 mt-2"><i
-												class="fa fa-building"></i> Meeting Room</span>
-										<span class="badge badge-success badge-pill ml-2 mt-2"><i
-												class="fa fa-cutlery"></i> Free Eat</span>
+										<div class="row">
+											<?php foreach($place['facilities'] as $k_facility => $v_facility):?>
+												<h5><span class="badge badge-success badge-pill ml-2 mt-2"><?= $v_facility['name']?></span></h5>
+											<?php endforeach;?>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -165,59 +155,33 @@
 										<th>Hari</th>
 										<th>Pukul</th>
 									</tr>
-									<tr>
-										<td>Senin</td>
-										<td>07:00 - 22:00</td>
-									</tr>
-									<tr>
-										<td>Selasa</td>
-										<td>07:00 - 22:00</td>
-									</tr>
-									<tr>
-										<td>Rabu</td>
-										<td>07:00 - 22:00</td>
-									</tr>
-									<tr>
-										<td>Kamis</td>
-										<td>07:00 - 22:00</td>
-									</tr>
-									<tr>
-										<td>Jum'at</td>
-										<td>07:00 - 22:00</td>
-									</tr>
-									<tr>
-										<td>Sabtu</td>
-										<td>07:00 - 19:00</td>
-									</tr>
-									<tr>
-										<td>Minggu</td>
-										<td><span class="badge badge-danger">Tutup</span></td>
-									</tr>
+									<?php foreach($place['schedules'] as $k_schedule => $v_schedule):?>
+										<tr>
+											<td><strong><?= $k_schedule?></strong></td>
+											<td>
+												<?php if(!empty($v_schedule)):?>
+													<?php if($v_schedule['open'] == $v_schedule['close']):?>
+														<h5><span class="badge badge-primary"><i class="fa fa-clock"></i> 24 Jam</span></h5>
+													<?php else:?>
+														<?= date('h:i A', strtotime($v_schedule['open']))?> - <?= date('h:i A', strtotime($v_schedule['close']))?>
+													<?php endif;?>
+												<?php else:?>
+													<h5><span class="badge badge-danger"><i class="fa fa-times-circle"></i> Tutup</span></h5>
+												<?php endif;?>
+											</td>
+										</tr>
+									<?php endforeach;?>
 								</table>
 							</div>
 							<div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
 								aria-labelledby="tabs-icons-text-3-tab">
 								<table class="table table-bordered">
-									<tr>
-										<td><b>Whatsapp</b></td>
-										<td>+62 83852413038</td>
-									</tr>
-									<tr>
-										<td><b>Instagram</b></td>
-										<td>@akhmadkhasan</td>
-									</tr>
-									<tr>
-										<td><b>Twitter</b></td>
-										<td>@akhmadkhasan</td>
-									</tr>
-									<tr>
-										<td><b>Facebook</b></td>
-										<td>@akhmadkhasan</td>
-									</tr>
-									<tr>
-										<td><b>E-Mail</b></td>
-										<td>@gmail.com</td>
-									</tr>
+									<?php foreach($place['contacts'] as $k_contact => $v_contact):?>
+										<tr>
+											<td><b><?= $k_contact?></b></td>
+											<td><?= $v_contact['value']?></td>
+										</tr>
+									<?php endforeach;?>
 								</table>
 							</div>
 
@@ -225,12 +189,11 @@
 								aria-labelledby="tabs-icons-text-4-tab">
 								<div class="row align-items-center justify-content-md-between">
 									<div class="col-md-12">
-										<span class="badge badge-pill ml-2 mt-2"
-											style="background-color: #1a0dab;color:white;">OVO</span>
-										<span class="badge badge-info badge-pill ml-2 mt-2">DANA</span>
-										<span class="badge badge-success badge-pill ml-2 mt-2">Gopay</span>
-										<span class="badge badge-default badge-pill ml-2 mt-2">Cash / Tunai</span>
-										<span class="badge badge-warning badge-pill ml-2 mt-2">Shopee Pay</span>
+										<div class="row">
+											<?php foreach($place['payments'] as $k_payment => $v_payment):?>
+												<h5><span class="badge badge-success badge-pill ml-2 mt-2"><?= $v_payment['value']?> (<?= $v_payment['name']?>)</span></h5>
+											<?php endforeach;?>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -277,21 +240,56 @@
 											<div class="card card-plain">
 												<div class="tab-content mt-2">
 													<div class="tab-pane fade active show" id="link110">
-														<p class="description">Collaboratively administrate empowered
-															markets via plug-and-play networks. Dynamically
-															procrastinate B2C users after installed base benefits.
-															<br><br>
-															Dramatically visualize customer directed convergence without
-															revolutionary ROI.
-														</p>
+														<div class="card shadow">
+															<ul class="list-group list-group-flush">
+																<?php foreach($place['menus']['food'] as $food):?>
+																	<li class="list-group-item">
+																		<div class="d-flex content-justify-between">
+																			<span class="font-weight-bold"><?= $food['name']?></span> <span class="font-weight-bold ml-auto">Rp. <?= $food['price']?></span>
+																		</div>
+																	</li>
+																<?php endforeach;?>
+															</ul>
+														</div>
 													</div>
 													<div class="tab-pane fade" id="link111">
-														<p class="description">Efficiently unleash cross-media
-															information without cross-media value. Quickly maximize
-															timely deliverables for real-time schemas.
-															<br><br>Dramatically maintain clicks-and-mortar solutions
-															without functional solutions.
-														</p>
+														<div class="card shadow">
+															<ul class="list-group list-group-flush">
+																<?php foreach($place['menus']['baverage'] as $baverage):?>
+																	<li class="list-group-item">
+																		<div class="d-flex content-justify-between">
+																			<span class="font-weight-bold"><?= $baverage['name']?></span> <span class="font-weight-bold ml-auto">Rp. <?= $baverage['price']?></span>
+																		</div>
+																	</li>
+																<?php endforeach;?>
+															</ul>
+														</div>
+													</div>
+													<div class="tab-pane fade" id="link112">
+														<div class="card shadow">
+															<ul class="list-group list-group-flush">
+																<?php foreach($place['menus']['snack'] as $snack):?>
+																	<li class="list-group-item">
+																		<div class="d-flex content-justify-between">
+																			<span class="font-weight-bold"><?= $snack['name']?></span> <span class="font-weight-bold ml-auto">Rp. <?= $snack['price']?></span>
+																		</div>
+																	</li>
+																<?php endforeach;?>
+															</ul>
+														</div>
+													</div>
+													<div class="tab-pane fade" id="link113">
+														<div class="card shadow">
+															<ul class="list-group list-group-flush">
+																<?php foreach($place['menus']['other'] as $other):?>
+																	<li class="list-group-item">
+																		<div class="d-flex content-justify-between">
+																			<span class="font-weight-bold"><?= $other['name']?></span> <span class="font-weight-bold ml-auto">Rp. <?= $other['price']?></span>
+																		</div>
+																	</li>
+																<?php endforeach;?>
+															</ul>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -365,16 +363,12 @@
 								aria-labelledby="tabs-icons-text-7-tab">
 
 								<div class="row">
-									<div class="col-md-6">
-										<div class="card rounded shadow">
-											<div class="card-body" style="padding:0px;">
-												<div id="map" style='width: 100%; height: 300px;-webkit-box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);-moz-box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);'></div>
-											</div>
-										</div>
+									<div class="col-md-5">
+										<div id="map" style='height: 300px;-webkit-box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);-moz-box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);box-shadow: 11px 10px 26px -19px rgba(0,0,0,0.96);'></div>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-7">
 										<p>
-											Eres' daring 'Grigri Fortune' swimsuit has the fit and coverage of a bikini in a one-piece silhouette. This fuchsia style is crafted from the label's sculpting peau douce fabric and has flattering cutouts through the torso and back. Wear yours with mirrored sunglasses on vacation.
+											<?= $place['address']?>, <?= $place['district']?>, <?= $place['regency']?>, <?= $place['province']?>
 										</p>
 									</div>
 								</div>

@@ -20,8 +20,9 @@ class Products extends CI_Controller {
 
     public function detail($id)
     {
-        $data['title'] = "Produk";
+        $data['title'] = "Detail Produk";
 		$data['places'] = $this->places->get_data(3);
+		$data['place'] = $this->places->get_detail($id);
 		$data['view'] = $this->load->view("guest/products/detail", $data, TRUE);
 		$data['view_js'] = $this->load->view("guest/products/detail-js", $data, TRUE);
 

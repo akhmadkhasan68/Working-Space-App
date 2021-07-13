@@ -36,7 +36,7 @@
 		{
 			Swal.fire({
 				icon: 'error',
-				title: `Peringatan!`,
+				title: `Opps...`,
 				text: `Masukkan tanggal awal dan tanggal akhir terlebih dahulu!`
 			});
 
