@@ -15,26 +15,18 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 col-md-12 ">
-				<div id="productCarousel" class="carousel slide pointer-event" data-ride="carousel"
-					data-interval="8000">
+				<div id="productCarousel" class="carousel slide pointer-event" data-ride="carousel" data-interval="8000">
 					<ol class="carousel-indicators mt-5">
-						<li data-target="#productCarousel" data-slide-to="0" class=""></li>
-						<li data-target="#productCarousel" data-slide-to="1" class=""></li>
-						<li data-target="#productCarousel" data-slide-to="2" class="active"></li>
+						<?php foreach($place['photos'] as $k_photos => $v_photos):?>
+							<li data-target="#productCarousel" data-slide-to="<?= $k_photos?>" class="<?php if($k_photos == 0):?>active<?php endif;?>"></li>
+						<?php endforeach;?>
 					</ol>
 					<div class="carousel-inner" role="listbox">
-						<div class="carousel-item">
-							<img class="d-block img-responsive img-fluid"
-								src="<?php echo base_url()?>assets/guest/img/pages/shirt.png" alt="First slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block img-responsive img-fluid"
-								src="<?php echo base_url()?>assets/guest/img/pages/shorts.png" alt="Second slide">
-						</div>
-						<div class="carousel-item active">
-							<img class="d-block img-responsive img-fluid"
-								src="<?php echo base_url()?>assets/guest/img/pages/tshirt.png" alt="Third slide">
-						</div>
+						<?php foreach($place['photos'] as $k_photos => $v_photos):?>
+							<div class="carousel-item <?php if($k_photos == 0):?>active<?php endif;?>">
+								<img class="d-block img-responsive img-fluid" src="<?= base_url('uploads/photos')?>/<?= $v_photos['photo']?>" alt="First slide">
+							</div>
+						<?php endforeach;?>
 					</div>
 					<a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
 						<button type="button" class="btn btn-warning btn-icon btn-round btn-sm" name="button">
