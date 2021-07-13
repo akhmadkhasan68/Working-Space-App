@@ -11,14 +11,21 @@
 		`);
 	});
 
-	$("#start_date").flatpickr({
+	let date1 = $("#start_date").flatpickr({
 		enableTime: true,
-		time_24hr: true
+		time_24hr: true,
+		minDate: "today",
+		onChange: function(selectedDates, dateStr, instance) {
+			date2.set('minDate', dateStr)
+		}
 	});
 
-	$("#end_date").flatpickr({
+	let date2 = $("#end_date").flatpickr({
 		enableTime: true,
-		time_24hr: true
+		time_24hr: true,
+		onChange: function(selectedDates, dateStr, instance) {
+			date1.set('maxDate', dateStr)
+		}
 	});
 
 	$("#search-btn").on('click', () => {

@@ -92,7 +92,7 @@
 
                             <div class="d-flex justify-content-between mt-2">
                                 <small class=" text-muted"><i class="fa fa-map-marker"></i> <?= $v_place['regency']?></small>
-                                <small class=" text-muted"><i class="fa fa-money"></i> <?= $v_place['price']?>/Jam</small>
+                                <small class=" text-muted"><i class="fa fa-money"></i> <?= number_format($v_place['price'],0,',','.')?>/Jam</small>
                                 <small class=" text-muted"><i class="fa fa-users"></i> <?= $v_place['capacity']?></small>
                             </div>
 
