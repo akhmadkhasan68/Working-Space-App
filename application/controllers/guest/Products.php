@@ -5,7 +5,7 @@ class Products extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Places', 'places');
+		$this->load->model('M_places', 'places');
 	}
 
 	public function index()

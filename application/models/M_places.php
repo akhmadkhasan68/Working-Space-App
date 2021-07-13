@@ -1,5 +1,5 @@
 <?php
-    class Places extends CI_Model{
+    class M_places extends CI_Model{
         public function get_data($limit)
         {
             $places = $this->db->select('a.*, b.name province, c.name regency, d.name district')->from('places a')

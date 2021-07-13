@@ -3,7 +3,7 @@
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('places', 'm');
+            $this->load->model('M_bookmarks', 'bookmarks');
 
             if($this->session->userdata('is_login') != true){
                 redirect('auth/login');
@@ -11,6 +11,16 @@
             if($this->session->userdata('role') != 'guest'){
                 show_404();
             }
+        }
+
+        public function index()
+        {
+            $data['title'] = "Home";
+            $data['bookmarks'] = $this->bookmarks->get_data(3);
+            $data['view_js'] = $this->load->view('guest/bookmarks/index-js', $data, true);
+            $data['view'] = $this->load->view("guest/bookmarks/index", $data, TRUE);
+
+            $this->template->__guest($data);
         }
 
         public function add() 
@@ -27,7 +37,7 @@
             if(!empty($cek))
             {
                 $this->db->where('id', $cek->id)->delete('bookmarks');
-                
+
                 print json_encode([
                     'error' => false,
                     'message' => 'berhasil menghapus bookmark!'

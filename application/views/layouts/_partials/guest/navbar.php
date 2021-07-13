@@ -64,6 +64,7 @@
 								<a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profil</a>
 								<?php if ($this->session->userdata('role') == 'guest'):?>
 									<a class="dropdown-item" href="#"><i class="fa fa-history"></i> Riwayat Transaksi</a>
+									<a class="dropdown-item" href="<?= site_url('guest/bookmarks')?>"><i class="fa fa-bookmark"></i> Bookmarks</a>
 								<?php endif;?>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" onclick="logout()"><i class="fa fa-power-off"></i> Keluar</a>
