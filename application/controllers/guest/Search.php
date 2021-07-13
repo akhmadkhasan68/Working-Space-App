@@ -17,4 +17,14 @@ class Search extends CI_Controller {
 
 		$this->template->__guest($data);
 	}
+
+	public function get_search()
+	{
+		$from_date = $this->input->post('from_date');
+		$to_date = $this->input->post('to_date');
+
+		$data['places'] = $this->places->get_data_by_date($from_date, $to_date);
+		
+		$this->load->view('guest/search/ajax/search', $data);
+	}
 }

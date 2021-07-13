@@ -23,85 +23,16 @@
             <div class="col-lg-5 col-md-5 col-12">
 				<div class="form-group">
 					<div class="input-group input-group-alternative mb-4">
-						<input type="text" class="form-control form-control-lg shadow" name="end_date" id="end_date" style="border-radius: 30px;"
-							placeholder="Tanggal Akhir">
+						<input type="text" class="form-control form-control-lg shadow" name="end_date" id="end_date" style="border-radius: 30px;"placeholder="Tanggal Akhir">
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-2 col-md-10 col-12">
-				<button class="btn btn-warning shadow btn-lg btn-block" style="border-radius: 30px;"><i
-						class="fa fa-search"></i></button>
+				<button class="btn btn-warning shadow btn-lg btn-block" style="border-radius: 30px;" id="search-btn"><i class="fa fa-search"></i></button>
 			</div>
-
-			<div class="col-lg-4 col-md-6">
-				<a href="<?php echo site_url('guest/products/detail/1')?>">
-					<div class="card card-product shadow">
-						<img class="card-img-top" src="https://source.unsplash.com/random/500x500" alt="...">
-						<div class="card-body">
-							<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
-							<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
-
-							<div class="d-flex justify-content-between mt-2">
-								<small class=" text-muted"><i class="fa fa-map-marker"></i> Malang</small>
-								<small class=" text-muted"><i class="fa fa-money"></i> 20k/Jam</small>
-								<small class=" text-muted"><i class="fa fa-tag"></i> Umum</small>
-							</div>
-
-							<div class="card-footer">
-								<button class="btn btn-outline-danger btn-block btn-sm ">
-									<i class="fa fa-bookmark-o"></i> Bookmark
-								</button>
-							</div>
-						</div>
-					</div> <!-- end card -->
-				</a>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<a href="<?php echo site_url('guest/products/detail/1')?>">
-					<div class="card card-product shadow">
-						<img class="card-img-top" src="https://source.unsplash.com/random/500x500" alt="...">
-						<div class="card-body">
-							<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
-							<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
-
-							<div class="d-flex justify-content-between mt-2">
-								<small class=" text-muted"><i class="fa fa-map-marker"></i> Malang</small>
-								<small class=" text-muted"><i class="fa fa-money"></i> 20k/Jam</small>
-								<small class=" text-muted"><i class="fa fa-tag"></i> Umum</small>
-							</div>
-
-							<div class="card-footer">
-								<button class="btn btn-outline-danger btn-block btn-sm ">
-									<i class="fa fa-bookmark-o"></i> Bookmark
-								</button>
-							</div>
-						</div>
-					</div> <!-- end card -->
-				</a>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<a href="<?php echo site_url('guest/products/detail/1')?>">
-					<div class="card card-product shadow">
-						<img class="card-img-top" src="https://source.unsplash.com/random/500x500" alt="...">
-						<div class="card-body">
-							<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
-							<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
-
-							<div class="d-flex justify-content-between mt-2">
-								<small class=" text-muted"><i class="fa fa-map-marker"></i> Malang</small>
-								<small class=" text-muted"><i class="fa fa-money"></i> 20k/Jam</small>
-								<small class=" text-muted"><i class="fa fa-tag"></i> Umum</small>
-							</div>
-
-							<div class="card-footer">
-								<button class="btn btn-outline-danger btn-block btn-sm ">
-									<i class="fa fa-bookmark-o"></i> Bookmark
-								</button>
-							</div>
-						</div>
-					</div> <!-- end card -->
-				</a>
-			</div>
+		</div>
+		<div class="row" id="search-result">
+			
 		</div>
 	</div>
 	<div class="section">
