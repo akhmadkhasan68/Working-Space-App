@@ -98,34 +98,9 @@
 														</td>
 														<td class="font-weight-bold">Rp. 140.000</td>
 													</tr>
-													<tr>
-														<td colspan="4">
-															<div class="row">
-																<div class="col-md-9">
-																	<input type="text"
-																		class="form-control form-control-sm"
-																		placeholder="Masukkan Code Promo">
-																</div>
-																<div class="col-md-3">
-																	<button class="btn btn-block btn-warning btn-sm"><i
-																			class="fa fa-ticket"></i> Pakai
-																		Kode</button>
-																</div>
-															</div>
-														</td>
-													</tr>
 												</tbody>
 											</table>
 										</div>
-									</div>
-								</div>
-
-								<div class="row mt-3">
-									<div class="col-md-6">
-										<h5 class="h5 mb-0 text-muted">Potongan Promo</h5>
-									</div>
-									<div class="col-md-6 text-right">
-										<h5 class="h5 mb-0">- Rp. 50.000</h5>
 									</div>
 								</div>
 
@@ -155,6 +130,7 @@
 					</div>
 					<div class="card-footer">
 						<button class="btn btn-success">Upload Bukti Pembayaran</button>
+						<button class="btn btn-danger">Batalkan</button>
 					</div>
 				</div>
 			</div>

@@ -24,6 +24,8 @@ class Search extends CI_Controller {
 		$to_date = $this->input->post('to_date');
 
 		$data['places'] = $this->places->get_data_by_date($from_date, $to_date);
+		$data['from_date'] = $from_date;
+		$data['to_date'] = $to_date;
 		
 		$this->load->view('guest/search/ajax/search', $data);
 	}

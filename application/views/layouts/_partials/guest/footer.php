@@ -94,7 +94,7 @@
         {
             Swal.fire({
                 icon: 'error',
-                title: `Gagal`,
+                title: `Opps...`,
                 text: `anda harus login!`
             });
 

@@ -64,11 +64,11 @@
 				<div class="row pick-size">
 					<div class="col-lg-6 col-md-6">
 						<label>Tanggal Reservasi</label>
-						<input type="text" class="form-control" name="start_date" id="start_date" placeholder="Tanggal Reservasi Awal">
+						<input type="text" class="form-control" name="from_date" id="from_date" placeholder="Tanggal Reservasi Awal" value="<?php if(isset($_GET['from_date'])): echo base64_decode($_GET['from_date']); endif;?>">
 					</div>
 					<div class="col-lg-6 col-md-6">
 						<label>Tanggal Reservasi</label>
-						<input type="text" class="form-control" name="end_date" id="end_date" placeholder="Tanggal Reservasi Akhir">
+						<input type="text" class="form-control" name="to_date" id="to_date" placeholder="Tanggal Reservasi Akhir" value="<?php if(isset($_GET['to_date'])): echo base64_decode($_GET['to_date']); endif;?>">
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-6">
 

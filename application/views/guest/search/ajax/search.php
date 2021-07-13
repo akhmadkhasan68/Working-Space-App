@@ -14,7 +14,7 @@
 
                     <div class="card-footer">
                         <div class="d-flex justify-content-between mt-2">
-                            <a href="<?php echo site_url('guest/products/detail/')?><?= $v_place['id']?>" class="mr-3 btn btn-primary btn-block btn-sm">
+                            <a href="<?php echo site_url('guest/products/detail/')?><?= $v_place['id']?>?from_date=<?= base64_encode($from_date)?>&to_date=<?= base64_encode($to_date)?>" class="mr-3 btn btn-primary btn-block btn-sm">
                                 <i class="fa fa-info-circle"></i> Detail
                             </a>
                             <button class="btn <?= ($v_place['bookmark']) ? 'btn-danger' : 'btn-outline-danger'?> btn-block btn-sm" onclick="addBoomark(this, <?= $v_place['id']?>)">

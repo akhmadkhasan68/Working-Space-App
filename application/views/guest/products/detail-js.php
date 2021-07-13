@@ -1,5 +1,5 @@
 <script>
-	let date1 = $("#start_date").flatpickr({
+	let date1 = $("#from_date").flatpickr({
 		enableTime: true,
 		time_24hr: true,
 		minDate: "today",
@@ -8,7 +8,7 @@
 		}
 	});
 
-	let date2 = $("#end_date").flatpickr({
+	let date2 = $("#to_date").flatpickr({
 		enableTime: true,
 		time_24hr: true,
 		onChange: function(selectedDates, dateStr, instance) {
@@ -17,10 +17,22 @@
 	});
 
 	const create_transaction = (url) => {
-		let start_date = $("#start_date").val();
-		let end_date = $("#end_date").val();
+		let from_date = $("#from_date").val();
+		let to_date = $("#to_date").val();
+		let not_login = `<?= $this->session->userdata('is_login') == null || $this->session->userdata('role') != 'guest'?>`;
 
-		if(start_date.length == 0 || end_date.length == 0)
+        if(not_login == 1)
+        {
+            Swal.fire({
+                icon: 'error',
+                title: `Opps...`,
+                text: `anda harus login!`
+            });
+
+            return;
+        }
+
+		if(from_date.length == 0 || to_date.length == 0)
 		{
 			Swal.fire({
 				icon: 'error',
@@ -41,7 +53,36 @@
 			confirmButtonText: 'Ya'
 		}).then((result) => {
 			if (result.value) {
-				window.location.href = url;
+				$.ajax({
+					url: `${url}`,
+					method: 'post',
+					dataType: 'json',
+					data: {
+						from_date, to_date	
+					},
+				}).
+				then(res => {
+					if(res.error)
+					{
+						Swal.fire({
+							icon: 'error',
+							title: `Opps...`,
+							text: `${res.message}`
+						});
+					}else{
+						Swal.fire({
+							icon: 'success',
+							title: `Selamat`,
+							text: `${res.message}`
+						});
+
+						setTimeout(() => {
+							window.location.replace(`<?= site_url('guest/transaction/detail/')?>${res.data_id}`);
+						}, 1000);
+					}
+				}).catch(err => {
+					console.log(err);
+				})
 			}
 		})
     }

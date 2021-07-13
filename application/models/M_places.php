@@ -36,6 +36,7 @@
         public function get_data_by_date($from_date, $to_date)
         {   
             $this->db->select('a.place_id')->from('reservations a');
+            $this->db->where('a.status', 2);
             $this->db->where("'$from_date:00' BETWEEN a.from_date and a.to_date OR '$to_date:00' BETWEEN a.from_date and a.to_date");
             $avail = $this->db->get()->result_array();
 

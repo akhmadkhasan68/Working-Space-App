@@ -11,7 +11,7 @@
 		`);
 	});
 
-	let date1 = $("#start_date").flatpickr({
+	let date1 = $("#from_date").flatpickr({
 		enableTime: true,
 		time_24hr: true,
 		minDate: "today",
@@ -20,7 +20,7 @@
 		}
 	});
 
-	let date2 = $("#end_date").flatpickr({
+	let date2 = $("#to_date").flatpickr({
 		enableTime: true,
 		time_24hr: true,
 		onChange: function(selectedDates, dateStr, instance) {
@@ -29,10 +29,10 @@
 	});
 
 	$("#search-btn").on('click', () => {
-		let start_date = $("#start_date").val();
-		let end_date = $("#end_date").val();
+		let from_date = $("#from_date").val();
+		let to_date = $("#to_date").val();
 
-		if(start_date.length == 0 || end_date.length == 0)
+		if(from_date.length == 0 || to_date.length == 0)
 		{
 			Swal.fire({
 				icon: 'error',
@@ -43,7 +43,7 @@
 			return;
 		}
 
-		search(start_date, end_date);
+		search(from_date, to_date);
 	});
 
 	const search = (from_date, to_date) => {
