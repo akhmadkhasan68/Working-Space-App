@@ -1,12 +1,22 @@
 <?php
     class M_places extends CI_Model{
-        public function get_data($limit)
+        public function get_data($limit = null, $name = null)
         {
-            $places = $this->db->select('a.*, b.name province, c.name regency, d.name district')->from('places a')
-            ->join('provinces b', 'b.id = a.province_id')
-            ->join('regencies c', 'c.id = a.regency_id')
-            ->join('districts d', 'd.id = a.district_id')
-            ->where('a.status', 1)->limit($limit)->get()->result_array();
+            $this->db->select('a.*, b.name province, c.name regency, d.name district')->from('places a');
+            $this->db->join('provinces b', 'b.id = a.province_id');
+            $this->db->join('regencies c', 'c.id = a.regency_id');
+            $this->db->join('districts d', 'd.id = a.district_id');
+            $this->db->where('a.status', 1);
+            if($name != null)
+            {
+                $this->db->like('a.name', $name);
+            }
+            if($limit != null)
+            {
+                $this->db->limit($limit);
+            }
+            
+            $places = $this->db->get()->result_array();
 
             $data = [];
             foreach ($places as $key => $value) {

@@ -27,4 +27,12 @@ class Products extends CI_Controller {
 
 		$this->template->__guest($data);
     }
+
+	public function get_search()
+	{
+		$name = $this->input->post('name');
+		$data['places'] = $this->places->get_data(null, $name);
+		
+		$this->load->view('guest/products/ajax/search', $data);
+	}
 }
