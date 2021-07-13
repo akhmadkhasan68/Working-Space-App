@@ -2,9 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Search extends CI_Controller {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Places', 'places');
+	}
+
 	public function index()
 	{
 		$data['title'] = "Cari";
+		$data['places'] = $this->places->get_data(3);
 		$data['view'] = $this->load->view("guest/search/index", $data, TRUE);
 		$data['view_js'] = $this->load->view("guest/search/index-js", $data, TRUE);
 

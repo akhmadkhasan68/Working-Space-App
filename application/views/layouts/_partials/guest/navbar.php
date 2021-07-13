@@ -47,6 +47,12 @@
 
 				<?php if ($this->session->userdata('is_login')):?>
 					<ul class="navbar-nav ml-lg-auto">
+						<?php if($this->session->userdata('role') == "owner"):?>
+						<li class="nav-item">
+							<a class="nav-link nav-link-icon" href="<?= site_url('owner/myworkingspace')?>"><i class="fa fa-home"></i> Kelola Co-Working Anda</a>
+						</li>
+						<?php endif; ?>
+							
 						<li class="nav-item dropdown">
 							<a class="nav-link nav-link-icon" href="#" id="navbar-default_dropdown_1" role="button"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,8 +64,6 @@
 								<a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profil</a>
 								<?php if ($this->session->userdata('role') == 'guest'):?>
 									<a class="dropdown-item" href="#"><i class="fa fa-history"></i> Riwayat Transaksi</a>
-								<?php elseif($this->session->userdata('role') == "owner"):?>
-									<a class="dropdown-item" href="<?= site_url('owner/myworkingspace')?>"><i class="fa fa-home"></i> Kelola Co-Working Anda</a>
 								<?php endif;?>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" onclick="logout()"><i class="fa fa-power-off"></i> Keluar</a>

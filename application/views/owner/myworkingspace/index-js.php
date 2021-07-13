@@ -20,6 +20,42 @@
         });
     }
 
+    const reConfirm = (id) => {
+        Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Apakah anda yakin melakukan aksi?",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			cancelButtonText: 'Batal',
+			confirmButtonText: 'Ya'
+		}).then((result) => {
+			if (result.value) {
+                $.ajax({
+                    url: `<?= site_url('owner/home/reconfirm')?>`,
+                    method: 'post',
+                    dataType: 'json',
+                    data: {
+                        id
+                    },
+                }).then(res => {
+                    if(res.error)
+                    {
+                        toastr.error(`${res.message}`, 'Gagal')
+                    }else
+                    {
+                        toastr.success(`${res.message}`, 'Berhasil');
+                    }
+
+                    renderPage(`<?= site_url('owner/myworkingspace/render/home') ?>`)
+                }).catch(err => {
+                    console.log(err);
+                })
+			}
+		})
+    }
+
     const addImage = () => {
         $("#fileUpload").trigger('click');
     }

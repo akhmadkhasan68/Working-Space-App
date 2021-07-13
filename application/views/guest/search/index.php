@@ -115,78 +115,33 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-lg-4 col-md-6">
-							<a href="<?php echo site_url('guest/products/detail/1')?>">
+						<?php foreach($places as $k_place => $v_place):?>
+							<div class="col-lg-4 col-md-6">
 								<div class="card card-product shadow">
-									<img class="card-img-top"
-										src="https://source.unsplash.com/random/500x500" alt="...">
+								<img class="card-img-top" src="<?= base_url('uploads/photos')?>/<?= $v_place['photos'][0]['photo']?>" alt="...">
 									<div class="card-body">
-										<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
-										<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
+										<h5 class="d-inline p-2card-title font-weight-bold"><?= $v_place['name']?></h5>
 
 										<div class="d-flex justify-content-between mt-2">
-											<small class=" text-muted"><i class="fa fa-map-marker"></i> Malang</small>
-											<small class=" text-muted"><i class="fa fa-money"></i> 20k/Jam</small>
-											<small class=" text-muted"><i class="fa fa-tag"></i> Umum</small>
+											<small class=" text-muted"><i class="fa fa-map-marker"></i> <?= $v_place['regency']?></small>
+											<small class=" text-muted"><i class="fa fa-money"></i> <?= $v_place['price']?>/Jam</small>
+											<small class=" text-muted"><i class="fa fa-users"></i> <?= $v_place['capacity']?></small>
 										</div>
 
 										<div class="card-footer">
-											<button class="btn btn-outline-danger btn-block btn-sm ">
-												<i class="fa fa-bookmark-o"></i> Bookmark
-											</button>
+											<div class="d-flex justify-content-between mt-2">
+												<a href="<?php echo site_url('guest/products/detail/')?><?= $v_place['id']?>" class="mr-3 btn btn-primary btn-block btn-sm">
+													<i class="fa fa-info-circle"></i> Detail
+												</a>
+												<button class="btn <?= ($v_place['bookmark']) ? 'btn-danger' : 'btn-outline-danger'?> btn-block btn-sm" onclick="addBoomark(this, <?= $v_place['id']?>)">
+													<i class="fa fa-bookmark-o"></i> Bookmark
+												</button>
+											</div>
 										</div>
 									</div>
 								</div> <!-- end card -->
-							</a>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<a href="<?php echo site_url('guest/products/detail/1')?>">
-								<div class="card card-product shadow">
-									<img class="card-img-top"
-										src="https://source.unsplash.com/random/500x500" alt="...">
-									<div class="card-body">
-										<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
-										<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
-
-										<div class="d-flex justify-content-between mt-2">
-											<small class=" text-muted"><i class="fa fa-map-marker"></i> Malang</small>
-											<small class=" text-muted"><i class="fa fa-money"></i> 20k/Jam</small>
-											<small class=" text-muted"><i class="fa fa-tag"></i> Umum</small>
-										</div>
-
-										<div class="card-footer">
-											<button class="btn btn-outline-danger btn-block btn-sm ">
-												<i class="fa fa-bookmark-o"></i> Bookmark
-											</button>
-										</div>
-									</div>
-								</div> <!-- end card -->
-							</a>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<a href="<?php echo site_url('guest/products/detail/1')?>">
-								<div class="card card-product shadow">
-									<img class="card-img-top"
-										src="https://source.unsplash.com/random/500x500" alt="...">
-									<div class="card-body">
-										<h5 class="d-inline p-2card-title font-weight-bold">7 Chiken</h5>
-										<span class="d-inline p-2 pull-right badge badge-success">NEW</span>
-
-										<div class="d-flex justify-content-between mt-2">
-											<small class=" text-muted"><i class="fa fa-map-marker"></i> Malang</small>
-											<small class=" text-muted"><i class="fa fa-money"></i> 20k/Jam</small>
-											<small class=" text-muted"><i class="fa fa-tag"></i> Umum</small>
-										</div>
-
-										<div class="card-footer">
-											<button class="btn btn-outline-danger btn-block btn-sm ">
-												<i class="fa fa-bookmark-o"></i> Bookmark
-											</button>
-										</div>
-									</div>
-								</div> <!-- end card -->
-							</a>
-						</div>
+							</div>
+						<?php endforeach;?>
 					</div>
 				</div>
 			</div>

@@ -74,8 +74,8 @@
     </div>
 </div>
 
-<section class="blogs-2">
-    <div class="container-fluid">
+<section class="">
+    <div class="container">
         <div class="row mb-md-5">
             <div class="col-md-8 mx-auto">
                 <h3 class="display-3 text-center">Rekomendasi Kami</h3>
@@ -83,66 +83,33 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3">
-                <div class="card card-blog card-background" data-animation="zooming">
-                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/guest/img/sections/austin.jpg">
-                    </div>
-                    <a href="javascript:;">
+            <?php foreach($places as $k_place => $v_place):?>
+                <div class="col-lg-4">
+                    <div class="card card-product shadow">
+                        <img class="card-img-top" src="<?= base_url('uploads/photos')?>/<?= $v_place['photos'][0]['photo']?>" alt="...">
                         <div class="card-body">
-                            <div class="content-bottom">
-                                <h6 class="card-category text-white opacity-8"><i class="fa fa-map-marker"></i>
-                                    Malang</h6>
-                                <h5 class="card-title">Ngalup Co</h5>
+                            <h5 class="d-inline p-2card-title font-weight-bold"><?= $v_place['name']?></h5>
+
+                            <div class="d-flex justify-content-between mt-2">
+                                <small class=" text-muted"><i class="fa fa-map-marker"></i> <?= $v_place['regency']?></small>
+                                <small class=" text-muted"><i class="fa fa-money"></i> <?= $v_place['price']?>/Jam</small>
+                                <small class=" text-muted"><i class="fa fa-users"></i> <?= $v_place['capacity']?></small>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between mt-2">
+                                    <a href="<?php echo site_url('guest/products/detail/')?><?= $v_place['id']?>" class="mr-3 btn btn-primary btn-block btn-sm">
+                                        <i class="fa fa-info-circle"></i> Detail
+                                    </a>
+                                    <button class="btn <?= ($v_place['bookmark']) ? 'btn-danger' : 'btn-outline-danger'?> btn-block btn-sm" onclick="addBoomark(this, <?= $v_place['id']?>)">
+                                        <i class="fa fa-bookmark-o"></i> Bookmark
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </a>
+                    </div> <!-- end card -->
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="card card-background" data-animation="zooming">
-                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/guest/img/sections/austin.jpg">
-                    </div>
-                    <a href="javascript:;">
-                        <div class="card-body">
-                            <div class="content-bottom">
-                                <h6 class="card-category text-white opacity-8"><i class="fa fa-map-marker"></i>
-                                    Malang</h6>
-                                <h5 class="card-title">7 Chicken</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="card card-background" data-animation="zooming">
-                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/guest/img/sections/austin.jpg">
-                    </div>
-                    <a href="javascript:;">
-                        <div class="card-body">
-                            <div class="content-bottom">
-                                <h6 class="card-category text-white opacity-8"><i class="fa fa-map-marker"></i>
-                                    Malang</h6>
-                                <h5 class="card-title">Ruang Perintis</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="card card-background" data-animation="zooming">
-                    <div class="full-background" style="background-image: url('<?php echo base_url();?>assets/guest/img/sections/austin.jpg">
-                    </div>
-                    <a href="javascript:;">
-                        <div class="card-body">
-                            <div class="content-bottom">
-                                <h6 class="card-category text-white opacity-8"><i class="fa fa-map-marker"></i>
-                                    Malang</h6>
-                                <h5 class="card-title">Dilo</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            <?php endforeach;?>
         </div>
     </div>
 </section>

@@ -3,7 +3,10 @@
     class M_myworkingspace extends CI_Model{
         public function getDataPage($page, $user_id)
         {
-            if($page == "general"){
+            if($page == "home"){
+                $data = $this->dataHome($user_id);
+            }
+            elseif($page == "general"){
                 $data['general'] = $this->dataGeneral($user_id);
                 $data['photos'] = $this->dataPhoto($user_id);
             }
@@ -32,6 +35,31 @@
             {
                 $data = $this->dataMenu($user_id);
             }
+            elseif($page == "review")
+            {
+                $data = $this->dataMenu($user_id);
+            }
+            elseif($page == "reservation")
+            {
+                $data = $this->dataMenu($user_id);
+            }
+
+            return $data;
+        }
+
+        private function dataHome($user_id) 
+        {
+            $info = $this->db->select("*")->from("places")->where("user_id", $user_id)->get()->row();
+            $reservations = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->get()->result();
+            $reservations_success = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->where('status', 1)->get()->result();
+            $reservations_denied = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->where('status', 2)->get()->result();
+            $reservations_waiting = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->where('status', 0)->get()->result();
+
+            $data['info'] = $info;
+            $data['reservations'] = $reservations;
+            $data['reservations_success'] = $reservations_success;
+            $data['reservations_denied'] = $reservations_denied;
+            $data['reservations_waiting'] = $reservations_waiting;
 
             return $data;
         }

@@ -84,6 +84,68 @@
 	}
 
 	mapboxgl.accessToken = 'pk.eyJ1IjoiYWtobWFka2hhc2FuNjgiLCJhIjoiY2tibjJ4czIyMW90MjMxbXlpeHJtbTJrbSJ9.zTVmr1xsKn1fsxEEztxJSQ';
+
+	const addBoomark = (e, id) => {
+        let not_login = `<?= $this->session->userdata('is_login') == null || $this->session->userdata('role') != 'guest'?>`;
+        let classAdd = e.classList.contains('btn-outline-danger');
+        let textConfirm = (classAdd) ? 'Apakah anda yakin akan menambahkan item ini sebagai bookmark?' : 'Apakah anda yakin akan menghapus item bookmark ini?'
+
+        if(not_login == 1)
+        {
+            Swal.fire({
+                icon: 'error',
+                title: `Gagal`,
+                text: `anda harus login!`
+            });
+
+            return;
+        }
+
+        Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: textConfirm,
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			cancelButtonText: 'Batal',
+			confirmButtonText: 'Ya'
+		}).then((result) => {
+			if (result.value) {
+                $.ajax({
+                    url: `<?= site_url('guest/bookmarks/add')?>`,
+                    method: 'post',
+                    dataType: 'json',
+                    data: {
+                        id
+                    },
+                }).
+                then(res => {
+                    if(res.error)
+                    {
+                        toastr.error(`${res.message}`, `Gagal`)
+                    }
+                    else
+                    {
+                        toastr.success(`${res.message}`, `Berhasil`)
+
+                        if(classAdd)
+                        {
+                            e.classList.remove('btn-outline-danger');
+                            e.classList.add('btn-danger');
+                        }
+                        else
+                        {
+                            e.classList.remove('btn-danger');
+                            e.classList.add('btn-outline-danger');
+                        }
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+			}
+		})
+    }
 </script>
 <?= $view_js;?>
 <script>

@@ -17,7 +17,10 @@ class Myworkingspace extends CI_Controller {
 
 	public function index()
 	{
+		$info = $this->db->select("*")->from("places")->where("user_id", $this->session->userdata('user_id'))->get()->row();
+
 		$data['title'] = "Kelola Co-Working Space";
+		$data['reservations_waiting'] = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->where('status', 0)->get()->result();
 		$data['view'] = $this->load->view("owner/myworkingspace/index", $data, TRUE);
 		$data['view_js'] = $this->load->view("owner/myworkingspace/index-js.php", $data, TRUE);
 
