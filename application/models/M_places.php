@@ -117,6 +117,11 @@
             return $place;
         }
 
+        public function get_places_payments($place_id)
+        {
+            return $this->get_payments($place_id);
+        }
+
         private function get_photos($place_id)
         {
             return $this->db->select('*')->from('place_photos')->where('place_id', $place_id)->get()->result_array();

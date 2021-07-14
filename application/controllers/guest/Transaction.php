@@ -6,6 +6,8 @@ class Transaction extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_places', 'places');
+		$this->load->model('M_reservations', 'reservations');
+		
 		$this->load->helper('string');
 
 		if($this->session->userdata('is_login') != true){
@@ -19,6 +21,9 @@ class Transaction extends CI_Controller {
 	public function detail($id)
 	{
 		$data['title'] = "Transaksi";
+		$data['reservation'] = $this->reservations->get_detail($id);
+		$data['place'] = $this->places->get_detail($data['reservation']['place_id']);
+		$data['payments'] = $this->places->get_places_payments($data['reservation']['place_id']);
 		$data['view'] = $this->load->view("guest/transaction/index", $data, TRUE);
 		$data['view_js'] = $this->load->view("guest/transaction/index-js", $data, TRUE);
 
@@ -70,6 +75,99 @@ class Transaction extends CI_Controller {
 			'message' => 'Selamat, anda berhasil melakukan reservasi!',
 			'data_id' => $this->db->insert_id()
 		]);
-		die;
     }
+
+	public function upload_transaction()
+	{
+		$reservation_id = $this->input->post('reservation_id');
+		$name = $this->input->post('name');
+		$address = $this->input->post('address');
+		$phone = $this->input->post('phone');
+		$type = $this->input->post('type');
+		$total_payment = $this->input->post('total_payment');
+		$payment_id = $this->input->post('payment_id');
+
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('address', 'Alamat', 'required');
+		$this->form_validation->set_rules('phone', 'Nomor Telepon', 'required');
+		$this->form_validation->set_rules('type', 'Asal Instansi', 'required');
+		$this->form_validation->set_rules('total_payment', 'Nominal Pembayaran', 'required');
+		$this->form_validation->set_rules('payment_id', 'Metode Pembayaran', 'required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$errors = $this->form_validation->error_array();
+			print json_encode([
+				'error' => true,
+				'message' => $errors
+			]);
+			die;
+		}
+
+		$reservation = $this->reservations->get_detail($reservation_id);
+		$total = $reservation['total'];
+		if($total_payment != $total)
+		{
+			print json_encode([
+				'error' => true,
+				'message' => ["Nominal Pembayaran tidak sesuai dengan tagihan!"]
+			]);
+			die;
+		}
+
+		$config['upload_path'] = 'uploads/photos/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']  = '1000';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+		$config['encrypt_name'] = true;
+
+		$this->upload->initialize($config);
+
+		if (!$this->upload->do_upload('photos')){
+			$messages = $this->upload->display_errors();
+
+			print json_encode([
+				'error' => true,
+				'message' => $messages
+			]);
+			die();
+		}
+		
+		$dataupload = $this->upload->data();
+
+		$this->db->insert("reservation_detail", [
+			"reservation_id" => $reservation_id,
+			"type" => $type,
+			"name" => $name,
+			"address" => $address,
+			"phone" => $phone
+		]);
+
+		$this->db->insert("transaction", [
+			"reservation_id" => $reservation_id,
+			"payment_id" => $payment_id,
+			"total_payment" => $total_payment,
+			"photo" => $dataupload['file_name'],
+			"status" => "fund",
+		]);
+
+		print json_encode([
+			'error' => false,
+			'message' => 'Selamat, anda berhasil melakukan aksi!',
+		]);
+	}
+
+	public function reject()
+	{
+		$id = $this->input->post('id');
+
+		$this->db->where('id', $id)->update('reservations', ['status' => 2]);
+		$this->db->where('reservation_id', $id)->update('transaction', ['status' => 'refund']);
+
+		print json_encode([
+			'error' => false,
+			'message' => 'Selamat, anda berhasil melakukan aksi!',
+		]);
+	}
 }
