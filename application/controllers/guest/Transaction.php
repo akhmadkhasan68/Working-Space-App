@@ -30,6 +30,18 @@ class Transaction extends CI_Controller {
 		$this->template->__guest($data);
 	}
 
+	public function history()
+	{
+		$user_id = $this->session->userdata('user_id');
+
+		$data['title'] = "History Transaksi";
+		$data['reservations'] = $this->reservations->get_reservation_user($user_id);
+		$data['view'] = $this->load->view("guest/transaction/history", $data, TRUE);
+		$data['view_js'] = $this->load->view("guest/transaction/history-js", $data, TRUE);
+
+		$this->template->__guest($data);
+	}
+
 	public function create($id)
     {
 		$from_date = $this->input->post('from_date');

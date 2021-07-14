@@ -63,7 +63,7 @@
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
 								<a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profil</a>
 								<?php if ($this->session->userdata('role') == 'guest'):?>
-									<a class="dropdown-item" href="#"><i class="fa fa-history"></i> Riwayat Transaksi</a>
+									<a class="dropdown-item" href="<?= site_url('guest/transaction/history')?>"><i class="fa fa-history"></i> Riwayat Transaksi</a>
 									<a class="dropdown-item" href="<?= site_url('guest/bookmarks')?>"><i class="fa fa-bookmark"></i> Bookmarks</a>
 								<?php endif;?>
 								<div class="dropdown-divider"></div>
