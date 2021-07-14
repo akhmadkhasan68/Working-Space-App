@@ -57,6 +57,7 @@
                 $this->db->where_not_in('b.id', $place_id);
             }
             $this->db->where('b.status', 1);
+            $this->db->group_by('b.id');
             $places = $this->db->get()->result_array();
 
             $data = [];
