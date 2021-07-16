@@ -229,7 +229,7 @@
 											</div>
 										</div>
 										<div class="col-md-8">
-											<div class="card card-plain">
+											<div class="">
 												<div class="tab-content mt-2">
 													<div class="tab-pane fade active show" id="link110">
 														<div class="card shadow">

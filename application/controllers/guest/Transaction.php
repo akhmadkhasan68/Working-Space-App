@@ -22,7 +22,7 @@ class Transaction extends CI_Controller {
 	{
 		$data['title'] = "Transaksi";
 		$data['reservation'] = $this->reservations->get_detail($id);
-		$data['place'] = $this->places->get_detail($data['reservation']['place_id']);
+		$data['place'] = $this->places->get_detail($data['reservation']['place_id'], 1);
 		$data['payments'] = $this->places->get_places_payments($data['reservation']['place_id']);
 		$data['view'] = $this->load->view("guest/transaction/index", $data, TRUE);
 		$data['view_js'] = $this->load->view("guest/transaction/index-js", $data, TRUE);

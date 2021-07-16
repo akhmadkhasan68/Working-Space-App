@@ -16,8 +16,13 @@
 <!-- plugins -->
 <script src="<?php echo base_url();?>assets/guest/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?php echo base_url();?>assets/guest/plugins/toastr/toastr.min.js"></script>
+<!-- Mapbox -->    
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
 
 <script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYWtobWFka2hhc2FuNjgiLCJhIjoiY2tibjJ4czIyMW90MjMxbXlpeHJtbTJrbSJ9.zTVmr1xsKn1fsxEEztxJSQ';
+	
 	const logout = () => {
 		Swal.fire({
 			title: 'Apakah anda yakin?',

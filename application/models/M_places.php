@@ -1,13 +1,16 @@
 <?php
     class M_places extends CI_Model{
-        public function get_data($limit = null, $name = null)
+        public function get_data($limit = null, $name = null, $status = null)
         {
             //get semua data places/workingspace dengan status aktif
             $this->db->select('a.*, b.name province, c.name regency, d.name district')->from('places a');
             $this->db->join('provinces b', 'b.id = a.province_id');
             $this->db->join('regencies c', 'c.id = a.regency_id');
             $this->db->join('districts d', 'd.id = a.district_id');
-            $this->db->where('a.status', 1);
+            if(!empty($status)){
+                $this->db->where('a.status', $status);
+            }
+
             if($name != null)
             {
                 $this->db->like('a.name', $name);
@@ -78,14 +81,18 @@
             return $data;
         }
 
-        public function get_detail($id)
+        public function get_detail($id, $status)
         {
             //get detail place/workingspace
             $this->db->select('a.*, b.name province, c.name regency, d.name district')->from('places a');
             $this->db->join('provinces b', 'b.id = a.province_id');
             $this->db->join('regencies c', 'c.id = a.regency_id');
             $this->db->join('districts d', 'd.id = a.district_id');
-            $this->db->where('a.status', 1);
+            if(!empty($status))
+            {
+                $this->db->where('a.status', $status);
+            }
+
             $this->db->where('a.id', $id);
             $place = $this->db->get()->row_array();
 

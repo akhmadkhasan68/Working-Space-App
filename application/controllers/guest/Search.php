@@ -11,7 +11,7 @@ class Search extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = "Cari";
-		$data['places'] = $this->places->get_data(3);
+		$data['places'] = $this->places->get_data(3, null, 1);
 		$data['view'] = $this->load->view("guest/search/index", $data, TRUE);
 		$data['view_js'] = $this->load->view("guest/search/index-js", $data, TRUE);
 

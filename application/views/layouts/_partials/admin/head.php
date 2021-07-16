@@ -23,4 +23,7 @@
     <link href="<?php echo base_url();?>assets/guest/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <link href="<?php echo base_url();?>assets/guest/plugins/toastr/toastr.css" rel="stylesheet" />
     <link href="<?php echo base_url();?>assets/guest/plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <!-- Mapbox -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css" type="text/css"/>
 </head>

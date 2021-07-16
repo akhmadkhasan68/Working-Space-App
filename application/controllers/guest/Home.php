@@ -11,7 +11,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = "Home";
-		$data['places'] = $this->m->get_data(3);
+		$data['places'] = $this->m->get_data(3, null, 1);
 		$data['view_js'] = $this->load->view('guest/home/index-js', $data, true);
 		$data['view'] = $this->load->view("guest/home/index", $data, TRUE);
 
