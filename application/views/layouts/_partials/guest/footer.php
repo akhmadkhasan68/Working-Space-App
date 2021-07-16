@@ -129,15 +129,25 @@
                     {
                         toastr.success(`${res.message}`, `Berhasil`)
 
-                        if(classAdd)
-                        {
-                            e.classList.remove('btn-outline-danger');
-                            e.classList.add('btn-danger');
-                        }
-                        else
-                        {
-                            e.classList.remove('btn-danger');
-                            e.classList.add('btn-outline-danger');
+                        if(e.id == "bookmark-detail"){
+                            if(e.firstChild.classList.contains('fa-bookmark-o')){
+                                e.firstChild.classList.remove('fa-bookmark-o');
+                                e.firstChild.classList.add('fa-bookmark');
+                            }else{
+                                e.firstChild.classList.add('fa-bookmark-o');
+                                e.firstChild.classList.remove('fa-bookmark');
+                            }
+                        }else{
+                            if(classAdd)
+                            {
+                                e.classList.remove('btn-outline-danger');
+                                e.classList.add('btn-danger');
+                            }
+                            else
+                            {
+                                e.classList.remove('btn-danger');
+                                e.classList.add('btn-outline-danger');
+                            }
                         }
                     }
                 }).catch(err => {

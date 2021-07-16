@@ -41,7 +41,11 @@
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-12 mx-auto">
-				<h2 class="title font-weight-bold"><?= $place['name']?></h2>
+				<div class="d-flex justify-content-between">
+					<h2 class="title font-weight-bold"><?= $place['name']?></h2>
+
+					<h2 onclick="addBoomark(this, <?= $place['id']?>)" id="bookmark-detail" style="cursor:pointer;" class="text-warning"><i class="fa <?= ($place['bookmark']) ? 'fa-bookmark' : 'fa-bookmark-o'?>"></i></h2>
+				</div>
 				<div class="stats">
 					<div class="stars text-warning">
 						<i class="fas fa-star"></i>
