@@ -46,7 +46,7 @@
             $avail = $this->db->get()->result_array();
 
             $place_id = [];
-            if(count($avail))
+            if(count($avail) > 0)
             {
                 foreach ($avail as $k_avail => $v_avail) {
                     array_push($place_id, $v_avail['place_id']);
@@ -54,12 +54,11 @@
             }
 
             //get all data place/workingspace berdasarkan tanggal yang belum direservasi
-            $this->db->select('b.*, c.name province, d.name regency, e.name district')->from('reservations a');
-            $this->db->join('places b', 'b.id = a.place_id');
+            $this->db->select('b.*, c.name province, d.name regency, e.name district')->from('places b');
             $this->db->join('provinces c', 'c.id = b.province_id');
             $this->db->join('regencies d', 'd.id = b.regency_id');
             $this->db->join('districts e', 'e.id = b.district_id');
-            if(count($avail)){
+            if(count($avail) > 0){
                 $this->db->where_not_in('b.id', $place_id);
             }
             $this->db->where('b.status', 1);

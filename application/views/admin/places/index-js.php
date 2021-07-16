@@ -69,7 +69,7 @@
 
     const getMap = (lang, lat, canvas) => {
         let map_detail = new mapboxgl.Map({
-            container: 'map',
+            container: canvas,
             style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
             center: [lang, lat], // starting position [lng, lat]
             zoom: 15, // starting zoom
