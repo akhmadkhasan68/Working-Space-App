@@ -270,8 +270,8 @@
                             <td>Rp. ${convertRupiah(val.price)}</td>
                             <td><span class="badge badge-success">${convertTypeMenu(val.type)}</span></td>
                             <td>
-                                <button class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>
-                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-sm btn-success" onclick="formMenu(${val.id})"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteMenu(${val.id})" ><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                     `;    
@@ -301,6 +301,103 @@
         }else{
             return 'Other';
         }
+    }
+
+    const formMenu = (id = null) => {
+        $.ajax({
+            url: `<?= site_url('owner/menu/get_form')?>`,
+            method: 'GET',
+            data: {
+                id: id,
+                place_id: `<?= $place->id?>`
+            }
+        }).then(res => {
+            $("#add-menu-modal").modal('show');
+            $("#add-menu-form").html(res);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
+    const formMenuSubmit = (e) => {
+        e.preventDefault();
+        let data = $(e.currentTarget).serialize();
+
+        $.ajax({
+            url: `<?= site_url('owner/menu/save')?>`,
+            method: 'post',
+            dataType: 'json',
+            data: data,
+        }).then(res => {
+            if (res.error) {
+                if(Object.keys(res.message).length > 1)
+                {
+                    Object.entries(res.message).forEach(([key, val]) => {
+                        toastr.error(val, 'Gagal');    
+                    });
+                }
+                else
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: res.message,
+                        target: document.getElementById('add-menu-modal')
+                    });
+                }
+
+                return;
+            }
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: res.message,
+                target: document.getElementById('add-menu-modal')
+            });
+
+            setTimeout(() => {
+                renderPage(`<?= site_url('owner/myworkingspace/render/menu') ?>`)
+            }, 1000);
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+    const deleteMenu = (id) => {
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: `Data yang dihapus akan hilang sepenuhnya.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: `<?= site_url('owner/menu/delete')?>`,
+                    method: 'post',
+                    dataType: 'json',
+                    data: {
+                        id
+                    },
+                }).then(res => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: `Berhasil`,
+                        text: `${res.message}`
+                    });
+
+                    setTimeout(() => {
+                        renderPage(`<?= site_url('owner/myworkingspace/render/menu') ?>`)
+                    }, 1000);
+                }).catch(err => {
+                    console.log(err)
+                })        
+            }
+        })  
     }
 
     const convertRupiah = (number) => {

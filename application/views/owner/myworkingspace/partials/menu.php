@@ -13,7 +13,7 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-12 col-12">
+            <div class="col-lg-9 col-12">
                 <select name="filter" id="filter" class="form-control">
                     <option value="">Filter Jenis Menu</option>
                     <option value="food">Makanan</option>
@@ -21,6 +21,9 @@
                     <option value="snack">Snack</option>
                     <option value="other">Lainnya</option>
                 </select>
+            </div>
+            <div class="col-lg-3 col-12">
+                <button class="btn btn-primary btn-block" onclick="formMenu()"><i class="fa fa-plus-circle"></i> Tambah Data</button>
             </div>
         </div>
 
@@ -59,6 +62,7 @@
 <script>
     $(document).ready(() => {
         renderTableMenu(null);
+        $("#add-menu-modal").modal('hide');
     });
 
     $("#filter").on('change', function(){

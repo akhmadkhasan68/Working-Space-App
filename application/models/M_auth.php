@@ -8,6 +8,7 @@
                 'password' => md5($password)
             ];
 
+            //query cek user untuk login 
             $cek = $this->db->select('*')->from('users')
                     ->group_start()
                         ->where('username', $email)
@@ -41,6 +42,7 @@
 
         public function do_register($data)
         {
+            //query insert data user untuk register
             return $this->db->insert('users', $data);
         }
     }

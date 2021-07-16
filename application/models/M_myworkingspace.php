@@ -49,11 +49,11 @@
 
         private function dataHome($user_id) 
         {
-            $info = $this->db->select("*")->from("places")->where("user_id", $user_id)->get()->row();
-            $reservations = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->get()->result();
-            $reservations_success = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->where('status', 1)->get()->result();
-            $reservations_denied = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->where('status', 2)->get()->result();
-            $reservations_waiting = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->where('status', 0)->get()->result();
+            $info = $this->db->select("*")->from("places")->where("user_id", $user_id)->get()->row(); //get info place/workingspace
+            $reservations = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->get()->result(); //get data reservasi
+            $reservations_success = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->where('status', 1)->get()->result(); //get data reservasi berhasil
+            $reservations_denied = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->where('status', 2)->get()->result(); //get data reservasi batal
+            $reservations_waiting = $this->db->select('*')->from('reservations a')->where('a.place_id', $info->id)->join('reservation_detail b', 'b.reservation_id = a.id')->where('status', 0)->get()->result(); //get data reservasi pending
 
             $data['info'] = $info;
             $data['reservations'] = $reservations;
@@ -66,32 +66,15 @@
 
         private function dataGeneral($user_id)
         {
-            $data = $this->db->select("*")->from("places")->where("user_id", $user_id)->get()->row();
-
-            if(empty($data))
-            {
-                $data = $this->db->insert('places', [
-                    'user_id' => $user_id,
-                    'name' => '',
-                    'description' => '',
-                    'capacity' => '',
-                    'price' => '',
-                    'province_id' => '',
-                    'regency_id' => '',
-                    'district_id' => '',
-                    'village_id' => '',
-                    'address' => '',
-                    'longitude' => '',
-                    'latitude' => '',
-                    'status' => 0
-                ]);
-            }
+            //get data place/workingspace berdasarkan user id pemilik
+            $data = $this->db->select("*")->from("places")->where("user_id", $user_id)->get()->row(); 
 
             return $data;
         }
 
         private function dataPhoto($user_id) 
         {
+            //get data photo workingpsace
             return $this->db->select("*")
                     ->from("place_photos a")
                     ->join('places p', 'p.id = a.place_id')
@@ -102,6 +85,7 @@
 
         private function dataPayment($user_id)
         {
+            //get data payment
             return $this->db->select('c.*, a.id as id_payment_place, a.`value`, a.place_id, b.`name` as place')
                     ->from("places_payments a")
                     ->join("places b", "b.id = a.place_id and b.user_id = $user_id")
@@ -112,6 +96,7 @@
 
         private function dataFacilities($user_id)
         {
+            //get data semua fasilitas 
             return $this->db->select('c.*, b.id as place_id, b.`name` as place, a.facility_id')
             ->from("places_facilities a")
             ->join("places b", "b.id = a.place_id and b.user_id = $user_id")
@@ -124,6 +109,7 @@
 
         private function dataPlacesFacilities($user_id)
         {
+            //get data fasilitas workingspace yang sudah ditambahkan
             return $this->db->select('*')->from('places_facilities a')
                     ->join('facilities b', 'b.id = a.facility_id')
                     ->join('places c', 'c.id = a.place_id')
@@ -132,13 +118,15 @@
 
         private function dataOperational($user_id)
         {
-                return $this->db->select("c.*, a.id as id_schedule, a.open, a.close")->from("place_schedules a")
+            //get data jam operasional
+            return $this->db->select("c.*, a.id as id_schedule, a.open, a.close")->from("place_schedules a")
                         ->join("places b", "b.id = a.place_id and b.user_id = $user_id")
                         ->join("day c", "c.id = a.day_id", 'right')->get()->result();
         }
 
         private function dataContacts($user_id, $type)
         {
+            //get data kontak
             return $this->db->select('a.*')->from('place_contacts a')
                     ->join('places b', 'b.id = a.place_id')
                     ->where('b.user_id', $user_id)
@@ -149,6 +137,7 @@
 
         private function dataMenu($user_id)
         {
+            //get data menu
             return $this->db->select('a.*')->from('menus a')
                     ->join('places b', 'b.id = a.place_id')
                     ->where('b.user_id', $user_id)->get()->result();

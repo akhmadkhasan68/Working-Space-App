@@ -21,7 +21,7 @@
 
                     <?php foreach($contacts as $k_contact => $v_contact):?>
                         <div class="form-group form-group-alternative">
-                            <label for="">Nomor <?= $v_contact;?> <span class="text-danger">*Kosongi jika tidak ada</span></label>
+                            <label for=""><?= $v_contact;?> <span class="text-danger">*Kosongi jika tidak ada</span></label>
                             <div class="input-group input-group-alternative mb-4">
                                 <input type="text" class="form-control form-control-alternative timepicker" id="exampleFormControlInput1" placeholder="Masukkan <?= $v_contact?>" value="<?= (isset($data[$v_contact])) ? $data[$v_contact]->value : ''?>" name="<?= strtolower($v_contact)?>">
                                 <?php if(isset($data[$v_contact])):?>

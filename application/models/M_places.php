@@ -2,6 +2,7 @@
     class M_places extends CI_Model{
         public function get_data($limit = null, $name = null)
         {
+            //get semua data places/workingspace dengan status aktif
             $this->db->select('a.*, b.name province, c.name regency, d.name district')->from('places a');
             $this->db->join('provinces b', 'b.id = a.province_id');
             $this->db->join('regencies c', 'c.id = a.regency_id');
@@ -35,6 +36,7 @@
 
         public function get_data_by_date($from_date, $to_date)
         {   
+            //get all data place/workingspace berdasarkan tanggal yang sudah direservasi
             $this->db->select('a.place_id')->from('reservations a');
             $this->db->where('a.status', 2);
             $this->db->where("'$from_date:00' BETWEEN a.from_date and a.to_date OR '$to_date:00' BETWEEN a.from_date and a.to_date");
@@ -48,6 +50,7 @@
                 }
             }
 
+            //get all data place/workingspace berdasarkan tanggal yang belum direservasi
             $this->db->select('b.*, c.name province, d.name regency, e.name district')->from('reservations a');
             $this->db->join('places b', 'b.id = a.place_id');
             $this->db->join('provinces c', 'c.id = b.province_id');
@@ -77,6 +80,7 @@
 
         public function get_detail($id)
         {
+            //get detail place/workingspace
             $this->db->select('a.*, b.name province, c.name regency, d.name district')->from('places a');
             $this->db->join('provinces b', 'b.id = a.province_id');
             $this->db->join('regencies c', 'c.id = a.regency_id');
