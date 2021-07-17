@@ -13,13 +13,22 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-lg-12 col-12">
-                <select name="" id="" class="form-control">
+            <div class="col-lg-6 col-12">
+                <select name="status_reservation" id="status_reservation" class="form-control">
                     <option value="">Filter Status Reservasi</option>
                     <option value="">All</option>
-                    <option value="">Sudah Bayar</option>
-                    <option value="">Belum Bayar</option>
-                    <option value="">Ditolak</option>
+                    <option value="0">Menunggu Konfirmasi</option>
+                    <option value="1">Berhasil</option>
+                    <option value="2">Gagal/Dibatalkan</option>
+                </select>
+            </div>
+            <div class="col-lg-6 col-12">
+                <select name="status_payment" id="status_payment" class="form-control">
+                    <option value="">Filter Status Pembayaran</option>
+                    <option value="">All</option>
+                    <option value="done_payment">Sudah Bayar</option>
+                    <option value="not_payment">Belum Bayar</option>
+                    <option value="refund">Refund</option>
                 </select>
             </div>
         </div>
@@ -31,6 +40,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Kode Transaksi</th>
                                 <th>Tanggal Transaksi</th>
                                 <th>Nama Penyewa</th>
                                 <th>Tanggal Reservasi</th>
@@ -39,8 +49,8 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="table-reservation-body">
+                            <!-- <tr>
                                 <td>1</td>
                                 <td>12 Juni 2021 00:00:00</td>
                                 <td>hasan</td>
@@ -50,7 +60,7 @@
                                 <td>
                                     <button class="btn btn-info btn-sm"><i class="fa fa-eye"></i></button>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -58,3 +68,25 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(() => {
+        renderTableReservation();
+    });
+
+    $("#status_reservation").on('change', (e) => {
+        let status_reservation = $(e.currentTarget).val();
+        let status_payment = $("#status_payment").val();
+
+        $('#status_payment').val("");
+
+        renderTableReservation(status_reservation, status_payment);
+    });
+
+    $("#status_payment").on('change', (e) => {
+        let status_payment = $(e.currentTarget).val();
+        let status_reservation = $("#status_reservation").val();
+
+        renderTableReservation(status_reservation, status_payment);
+    });
+</script>

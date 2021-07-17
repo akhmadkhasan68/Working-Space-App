@@ -35,7 +35,7 @@ class Transaction extends CI_Controller {
 		$user_id = $this->session->userdata('user_id');
 
 		$data['title'] = "History Transaksi";
-		$data['reservations'] = $this->reservations->get_reservation_user($user_id);
+		$data['reservations'] = $this->reservations->get_reservations($user_id);
 		$data['view'] = $this->load->view("guest/transaction/history", $data, TRUE);
 		$data['view_js'] = $this->load->view("guest/transaction/history-js", $data, TRUE);
 

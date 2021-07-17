@@ -400,6 +400,66 @@
         })  
     }
 
+    const renderTableReservation = (status_reservation = null, status_payment = null) => {
+        $.ajax({
+            url: `<?= site_url('owner/reservations/get_table')?>`,
+            method: 'post',
+            dataType: 'json',
+            data: {
+                status_reservation, status_payment
+            }
+        }).then(res => {
+            let html = ``;
+            if(Object.keys(res.data).length > 0)
+            {
+                let no = 1;
+                Object.entries(res.data).forEach(([key, val]) => {
+                    html += `
+                        <tr>
+                            <td>${no++}</td>
+                            <td>${ val.code.toString().toUpperCase()}</td>
+                            <td>${val.created_at}</td>
+                            <td>${val.name}</td>
+                            <td>${val.from_date} - ${val.to_date} <br> <span class="badge badge-primary">${val.hours} jam x Rp.${convertRupiah(val.price)}</span></td>
+                            <td>Rp. ${convertRupiah(val.total)}</td>
+                            <td>${convertStatusReservation(val)}</td>
+                            <td>
+                                <button class="btn btn-icon btn-sm btn-info"><i class="fa fa-info-circle"></i> Detail Info</button>
+                            </td>
+                        </tr>
+                    `;    
+                });
+            }else{
+                html += `
+                    <tr>
+                        <td colspan=7><center>Data Kosong!</center></td>
+                    </tr>
+                `;
+            }
+
+            $(`#table-reservation-body`).html(html);
+        }).catch(err => {
+            console.log(err)
+        });
+    }
+
+    const convertStatusReservation = ({status, status_payment}) => {
+        let html = ``;
+        if(status == 0 && status_payment != null){
+            html = `<span class="badge badge-warning">Menunggu Konfirmasi</span> <span class="badge badge-success">Sudah dibayar</span>`;
+        }else if(status == 0 && status_payment == null){
+            html = `<span class="badge badge-warning">Menunggu Konfirmasi</span> <span class="badge badge-danger">Belum dibayar</span>`;
+        }else if(status == 2 && status_payment == 'fund'){
+            html = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-danger">Belum Direfund</span>`;
+        }else if(status == 2 && status_payment == 'refund'){
+            html = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-success">Sudah Direfund</span>`;
+        }else{
+            html = `<span class="badge badge-success">Berhasil</span>`;
+        }
+
+        return html;
+    }
+
     const convertRupiah = (number) => {
         let	str_number = number.toString(),
         sisa 	= str_number.length % 3,

@@ -58,7 +58,7 @@
                 <div class="card bg-gradient-danger">
                     <div class="card-header bg-gradient-danger text-white">
                         <center>
-                            <strong><i class="fa fa-times-circle"></i> Reservasi Gagal</strong>
+                            <strong><i class="fa fa-times-circle"></i> Reservasi Gagal/Dibatalkan</strong>
                         </center>
                     </div>
                     <div class="card-body">
@@ -72,7 +72,7 @@
                 <div class="card bg-gradient-warning">
                     <div class="card-header bg-gradient-warning text-white">
                         <center>
-                            <strong><i class="fa fa-time-circle"></i> Menunggu Diproses</strong>
+                            <strong><i class="fa fa-warning"></i> Menunggu Diproses</strong>
                         </center>
                     </div>
                     <div class="card-body">
