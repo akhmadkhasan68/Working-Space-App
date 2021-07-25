@@ -132,7 +132,7 @@
 									<?php elseif($reservation['status_payment'] == null):?>
 										<div class="alert alert-warning" role="alert">
 											<h4 class="h5 text-white font-weight-bold"><i class="fa fa-info-circle"></i> Mohon Maaf!</h4> 
-											Proses reservasi dan transaksi telah anda batalkan.
+											Proses reservasi dan transaksi telah dibatalkan.
 										</div>
 									<?php endif;?>
 								<?php endif;?>

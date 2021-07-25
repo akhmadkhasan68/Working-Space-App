@@ -472,15 +472,17 @@
                 label_status += ` <span class="badge badge-danger">Expired</span>`;
             }
             button_action = `
-                <button class="btn btn-danger btn-sm"><i class="fa fa-times-circle"></i> Batalkan</button>
+                <button class="btn btn-danger btn-sm" onclick="rejectReservation(${id})"><i class="fa fa-times-circle"></i> Batalkan</button>
             `;
         }else if(status == 2 && status_payment == 'fund'){
-            status = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-danger">Belum Direfund</span>`;
+            label_status = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-danger">Belum Direfund</span>`;
             button_action = `
                 <button class="btn btn-danger btn-sm" onclick="refundReservation(${id})"><i class="fa fa-times-circle"></i> Refund</button>
             `;
         }else if(status == 2 && status_payment == 'refund'){
             label_status = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-success">Sudah Direfund</span>`;
+        }else if(status == 2 && status_payment == null){
+            label_status = `<span class="badge badge-danger">Gagal/Dibatalkan</span>`;
         }else{
             label_status = `<span class="badge badge-success">Berhasil</span>`;
         }
@@ -514,7 +516,75 @@
     }
 
     const confirmReservation = id => {
-        
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: `Apakah anda yakin untuk melakukan konfirmasi untuk proses reservasi ini?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: `<?= site_url('owner/reservations/confirm')?>`,
+                    method: 'post',
+                    dataType: 'json',
+                    data: {
+                        id
+                    },
+                }).then(res => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: `Yeay...`,
+                        text: `${res.message}`
+                    });
+
+                    setTimeout(() => {
+                        renderPage(`<?= site_url('owner/myworkingspace/render/reservation') ?>`)
+                    }, 1000);
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+        })
+    }
+
+    const rejectReservation = id => {
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: `Apakah anda yakin untuk melakukan pembatalan untuk proses reservasi ini?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: `<?= site_url('owner/reservations/reject')?>`,
+                    method: 'post',
+                    dataType: 'json',
+                    data: {
+                        id
+                    },
+                }).then(res => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: `Yeay...`,
+                        text: `${res.message}`
+                    });
+
+                    setTimeout(() => {
+                        renderPage(`<?= site_url('owner/myworkingspace/render/reservation') ?>`)
+                    }, 1000);
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+        })
     }
 
     const refundReservation = id => {

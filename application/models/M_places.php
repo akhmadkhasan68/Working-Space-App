@@ -41,7 +41,7 @@
         {   
             //get all data place/workingspace berdasarkan tanggal yang sudah direservasi
             $this->db->select('a.place_id')->from('reservations a');
-            $this->db->where('a.status', 2);
+            // $this->db->where('a.status', 2);
             $this->db->where("'$from_date:00' BETWEEN a.from_date and a.to_date OR '$to_date:00' BETWEEN a.from_date and a.to_date");
             $avail = $this->db->get()->result_array();
 

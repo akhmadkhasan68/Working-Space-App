@@ -105,5 +105,29 @@
                 'message' => 'Selamat, anda berhasil melakukan aksi!',
             ]);
         }
+
+        public function confirm()
+        {
+            $id = $this->input->post('id');
+
+            $this->db->where('id', $id)->update('reservations', ['status' => '1']);
+            
+            echo json_encode([
+                'error' => false,
+                'message' => 'Berhasil melakukan konfirmasi reservasi'
+            ]);
+        }
+
+        public function reject()
+        {
+            $id = $this->input->post('id');
+
+            $this->db->where('id', $id)->update('reservations', ['status' => '2']);
+            
+            echo json_encode([
+                'error' => false,
+                'message' => 'Berhasil melakukan pembatalan reservasi'
+            ]);
+        }
     }
 ?>
