@@ -20,8 +20,9 @@
         {
             $status_reservation = $this->input->get_post('status_reservation');
             $status_payment = $this->input->get_post('status_payment');
+            $place_id = $this->db->select("*")->from("places")->where("user_id", $this->session->userdata('user_id'))->get()->row()->id;
 
-            $data = $this->reservations->get_reservations(null, $status_reservation, $status_payment);
+            $data = $this->reservations->get_reservations(null, $status_reservation, $status_payment, $place_id);
 
             print json_encode([
                 'error' => false,
