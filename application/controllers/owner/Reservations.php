@@ -12,6 +12,7 @@
             }
 
             $this->load->model('M_myworkingspace', 'm');
+            $this->load->model('M_places', 'places');
             $this->load->model('M_reservations', 'reservations');
         }
 
@@ -26,6 +27,17 @@
                 'error' => false,
                 "data" => $data
             ]);
+        }
+
+        public function get_detail()
+        {
+            $id = $this->input->post('id');
+
+            $data['reservation'] = $this->reservations->get_detail($id);
+            $data['place'] = $this->places->get_detail($data['reservation']['place_id']);
+		    $data['payments'] = $this->places->get_places_payments($data['reservation']['place_id']);
+
+            $this->load->view('owner/reservations/detail', $data);
         }
     }
 ?>

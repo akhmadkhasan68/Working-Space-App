@@ -80,7 +80,7 @@
             return $data;
         }
 
-        public function get_detail($id, $status)
+        public function get_detail($id, $status = null)
         {
             //get detail place/workingspace
             $this->db->select('a.*, b.name province, c.name regency, d.name district')->from('places a');

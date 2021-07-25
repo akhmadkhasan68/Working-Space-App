@@ -414,6 +414,8 @@
             {
                 let no = 1;
                 Object.entries(res.data).forEach(([key, val]) => {
+                    let {label_status, button_action} = convertStatusReservation(val);
+
                     html += `
                         <tr>
                             <td>${no++}</td>
@@ -422,9 +424,10 @@
                             <td>${val.name}</td>
                             <td>${val.from_date} - ${val.to_date} <br> <span class="badge badge-primary">${val.hours} jam x Rp.${convertRupiah(val.price)}</span></td>
                             <td>Rp. ${convertRupiah(val.total)}</td>
-                            <td>${convertStatusReservation(val)}</td>
+                            <td>${label_status}</td>
                             <td>
-                                <button class="btn btn-icon btn-sm btn-info"><i class="fa fa-info-circle"></i> Detail Info</button>
+                                <button class="btn btn-icon btn-sm btn-info" onclick="getDetailReservation(${val.id})"><i class="fa fa-info-circle"></i> Detail Info</button>
+                                ${button_action}
                             </td>
                         </tr>
                     `;    
@@ -443,21 +446,74 @@
         });
     }
 
-    const convertStatusReservation = ({status, status_payment}) => {
-        let html = ``;
+    const convertStatusReservation = ({status, status_payment, id, from_date, to_date}) => {
+        let label_status = ``;
+        let button_action = ``;
+        let date_now = new Date();
+        let date_from = new Date(`${from_date}`);
+
+        let is_expired = (date_now.getTime() > date_from.getTime())
+
         if(status == 0 && status_payment != null){
-            html = `<span class="badge badge-warning">Menunggu Konfirmasi</span> <span class="badge badge-success">Sudah dibayar</span>`;
+            label_status = `<span class="badge badge-warning">Menunggu Konfirmasi</span> <span class="badge badge-success">Sudah dibayar</span>`;
+            if(!is_expired){
+                button_action = `
+                    <button class="btn btn-success btn-sm"><i class="fa fa-check-circle" onclick="confirmReservation(${id})"></i> Konfirmasi</button>
+                    <button class="btn btn-danger btn-sm"><i class="fa fa-times-circle" onclick="rejectReservation(${id})"></i> Refund</button>
+                `;
+            }else{
+                button_action = ``;
+                label_status += ` <span class="badge badge-danger">Expired</span>`;
+            }
         }else if(status == 0 && status_payment == null){
-            html = `<span class="badge badge-warning">Menunggu Konfirmasi</span> <span class="badge badge-danger">Belum dibayar</span>`;
+            label_status = `<span class="badge badge-warning">Menunggu Konfirmasi</span> <span class="badge badge-danger">Belum dibayar</span>`;
+            if(is_expired){
+                label_status += ` <span class="badge badge-danger">Expired</span>`;
+            }
+            button_action = `
+                <button class="btn btn-danger btn-sm"><i class="fa fa-times-circle"></i> Batalkan</button>
+            `;
         }else if(status == 2 && status_payment == 'fund'){
-            html = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-danger">Belum Direfund</span>`;
+            status = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-danger">Belum Direfund</span>`;
+            button_action = `
+                <button class="btn btn-danger btn-sm"><i class="fa fa-times-circle"></i> Refund</button>
+            `;
         }else if(status == 2 && status_payment == 'refund'){
-            html = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-success">Sudah Direfund</span>`;
+            label_status = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-success">Sudah Direfund</span>`;
         }else{
-            html = `<span class="badge badge-success">Berhasil</span>`;
+            label_status = `<span class="badge badge-success">Berhasil</span>`;
         }
 
-        return html;
+        return {
+            label_status: label_status,
+            button_action: button_action
+        };
+    }
+
+    const getDetailReservation = id => {
+        $.ajax({
+            url: `<?= site_url('owner/reservations/get_detail')?>`,
+            method: 'post',
+            data: {
+                id
+            },
+        }).then(res => {
+            $("#modal-detail-reservation").modal('show');
+            $("#body-detail-reservation").html(res);
+        }).cath(err => {
+            console.log(err)
+        })
+    }
+
+    const detailImg = url => {
+        Swal.fire({
+            imageUrl: url,
+            target: document.getElementById('modal-detail-reservation')
+        })
+    }
+
+    const confirmReservation = id => {
+        
     }
 
     const convertRupiah = (number) => {
