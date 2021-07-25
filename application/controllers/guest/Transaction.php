@@ -182,4 +182,36 @@ class Transaction extends CI_Controller {
 			'message' => 'Selamat, anda berhasil melakukan aksi!',
 		]);
 	}
+
+	public function feedback()
+	{
+		$reservation_id = $this->input->post('reservation_id');
+		$value = $this->input->post('ratings');
+		$description = $this->input->post('description');
+
+		$cek = $this->db->get_where('ratings', [
+			'reservation_id' => $reservation_id
+		])->row();
+
+		if(empty($cek)){
+			$this->db->insert('ratings', [
+				'reservation_id' => $reservation_id,
+				'value' => $value,
+			]);
+			
+			$rating_id = $this->db->insert_id();
+			$this->db->insert('feedbacks', [
+				'rating_id' => $rating_id,
+				'description' => $description,
+			]);
+		}else{
+			$this->db->where('reservation_id', $reservation_id)->update('ratings', ['value' => $value]);
+			$this->db->where('rating_id', $cek->id)->update('feedbacks', ['description' => $description]);
+		}
+
+		print json_encode([
+			'error' => false,
+			'message' => 'Selamat, anda berhasil melakukan aksi!',
+		]);
+	}
 }

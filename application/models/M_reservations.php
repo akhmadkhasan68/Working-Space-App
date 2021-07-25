@@ -32,7 +32,7 @@
             $this->db->from('reservations a');
             $this->db->join('reservation_detail b', 'b.reservation_id = a.id', 'left');
             $this->db->join('transaction c', 'c.reservation_id = a.id', 'left');
-            $this->db->join('ratings d', 'd.transaction_id = c.id', 'left');
+            $this->db->join('ratings d', 'd.reservation_id = a.id', 'left');
             $this->db->join('feedbacks e', 'e.rating_id = d.id', 'left');
             $this->db->join('payments f', 'f.id = c.payment_id', 'left');
             $this->db->join('places g', 'g.id = a.place_id', 'left');

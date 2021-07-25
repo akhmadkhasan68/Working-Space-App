@@ -123,6 +123,44 @@
 										<h4 class="h5 text-white font-weight-bold"><i class="fa fa-info-circle"></i> Terimakasih!</h4> 
 										Proses reservasi dan transaksi anda sudah berhasil. Terimakasih telah menggunakan jasa kami :)
 									</div>
+
+									<div class="row">
+										<div class="col-lg-12">
+											<label for="" class="font-weight-bold">Beri Rating & Feedback untuk Co-Working Space</label>
+										</div>
+									</div>
+
+									<div class="stats">
+										<div class="stars text-warning" style="width: 180px;">
+											<?php for($i = 1; $i <= 5; $i++):?>
+												<?php if(isset($reservation['rating'])):?>
+													<?php if($i <= $reservation['rating']):?>
+														<i class="rating__star fas fa-star" style="cursor:pointer;"></i>	
+													<?php else:?>
+														<i class="rating__star far fa-star" style="cursor:pointer;"></i>	
+													<?php endif;?>
+												<?php else:?>
+													<i class="rating__star far fa-star" style="cursor:pointer;"></i>
+												<?php endif;?>
+											<?php endfor;?>
+										</div>
+									</div>
+
+									<div class="row mt-3">
+										<div class="col-lg-12">
+											<form id="form-feedback">
+												<input type="hidden" name="reservation_id" value="<?= $reservation['id']?>">
+												<input type="hidden" id="ratings" name="ratings" value="<?= (isset($reservation['rating'])) ? $reservation['rating'] : ''?>">
+												<div class="form-group">
+													<label for="">Feedback</label>
+													<div class="input-group input-group-alternative mb-4">
+														<textarea class="form-control form-control-alternative" rows="3" placeholder="Masukkan Feedback ..." name="description"><?= (isset($reservation['feedback'])) ? $reservation['feedback'] : ''?></textarea>
+													</div>
+												</div>
+												<button type="submit" class="btn btn-primary">Kirim Feedback</button>
+											</form>
+										</div>
+									</div>
 								<?php elseif($reservation['status'] == 2):?>
 									<?php if($reservation['status_payment'] == "refund"):?>
 										<div class="alert alert-danger" role="alert">
