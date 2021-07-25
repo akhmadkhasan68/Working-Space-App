@@ -39,5 +39,71 @@
 
             $this->load->view('owner/reservations/detail', $data);
         }
+
+        public function refund()
+        {
+            $reservation_id = $this->input->post('reservation_id');
+            $total_payment = $this->input->post('total_payment');
+
+            $this->form_validation->set_rules('total_payment', 'Nominal Pembayaran', 'required');
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                $errors = $this->form_validation->error_array();
+                print json_encode([
+                    'error' => true,
+                    'message' => [$errors['total_payment']]
+                ]);
+                die;
+            }
+
+            if(!is_uploaded_file($_FILES['photos']['tmp_name'])){
+                print json_encode([
+                    'error' => true,
+                    'message' => ["Foto harus diisi!"]
+                ]);
+                die;
+            }
+
+            $reservation = $this->reservations->get_detail($reservation_id);
+            $total = $reservation['total'];
+            if($total_payment != $total)
+            {
+                print json_encode([
+                    'error' => true,
+                    'message' => ["Nominal Pengembalian tidak sesuai dengan pembayaran!"]
+                ]);
+                die;
+            }
+
+            $config['upload_path'] = 'uploads/photos/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['max_size']  = '1000';
+            $config['max_width']  = '1024';
+            $config['max_height']  = '768';
+            $config['encrypt_name'] = true;
+
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('photos')){
+                $messages = $this->upload->display_errors();
+
+                print json_encode([
+                    'error' => true,
+                    'message' => $messages
+                ]);
+                die();
+            }
+
+            $dataupload = $this->upload->data();
+
+            $this->db->where('id', $reservation_id)->update('reservations', ['status' => '2']);
+            $this->db->where('reservation_id', $reservation_id)->update('transaction', ['status' => 'refund']);
+
+            print json_encode([
+                'error' => false,
+                'message' => 'Selamat, anda berhasil melakukan aksi!',
+            ]);
+        }
     }
 ?>

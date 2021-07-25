@@ -449,22 +449,23 @@
     const convertStatusReservation = ({status, status_payment, id, from_date, to_date}) => {
         let label_status = ``;
         let button_action = ``;
+
         let date_now = new Date();
         let date_from = new Date(`${from_date}`);
-
         let is_expired = (date_now.getTime() > date_from.getTime())
 
         if(status == 0 && status_payment != null){
             label_status = `<span class="badge badge-warning">Menunggu Konfirmasi</span> <span class="badge badge-success">Sudah dibayar</span>`;
             if(!is_expired){
                 button_action = `
-                    <button class="btn btn-success btn-sm"><i class="fa fa-check-circle" onclick="confirmReservation(${id})"></i> Konfirmasi</button>
-                    <button class="btn btn-danger btn-sm"><i class="fa fa-times-circle" onclick="rejectReservation(${id})"></i> Refund</button>
+                    <button class="btn btn-success btn-sm" onclick="confirmReservation(${id})"><i class="fa fa-check-circle"></i> Konfirmasi</button>
                 `;
             }else{
                 button_action = ``;
                 label_status += ` <span class="badge badge-danger">Expired</span>`;
             }
+
+            button_action += ` <button class="btn btn-danger btn-sm" onclick="refundReservation(${id})"><i class="fa fa-times-circle"></i> Refund</button>`;
         }else if(status == 0 && status_payment == null){
             label_status = `<span class="badge badge-warning">Menunggu Konfirmasi</span> <span class="badge badge-danger">Belum dibayar</span>`;
             if(is_expired){
@@ -476,7 +477,7 @@
         }else if(status == 2 && status_payment == 'fund'){
             status = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-danger">Belum Direfund</span>`;
             button_action = `
-                <button class="btn btn-danger btn-sm"><i class="fa fa-times-circle"></i> Refund</button>
+                <button class="btn btn-danger btn-sm" onclick="refundReservation(${id})"><i class="fa fa-times-circle"></i> Refund</button>
             `;
         }else if(status == 2 && status_payment == 'refund'){
             label_status = `<span class="badge badge-danger">Gagal/Dibatalkan</span> <span class="badge badge-success">Sudah Direfund</span>`;
@@ -515,6 +516,57 @@
     const confirmReservation = id => {
         
     }
+
+    const refundReservation = id => {
+        $("#modal-refund").modal('show');
+        $("#reservation_id").val(id);
+    }
+
+    $("#form-refund").on('submit', function(e){
+        e.preventDefault();
+
+        let data = new FormData(this);
+
+        $.ajax({
+            url: `<?= site_url('owner/reservations/refund')?>`,
+            data: data,
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST'
+        }).done((res) => {
+            if(res.error){
+                if(Object.keys(res.message).length > 1)
+                {
+                    Object.entries(res.message).forEach(([key, val]) => {
+                        toastr.error(val, 'Gagal');    
+                    });
+                }
+                else
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: res.message,
+                        target: document.getElementById('modal-refund'),
+                    });
+                }
+
+                return;
+            }else{
+                toastr.success(res.message, 'Berhasil');
+
+                setTimeout(() => {
+                    $("#modal-refund").modal('hide');
+                    $("#form-refund")[0].reset()
+                    renderPage(`<?= site_url('owner/myworkingspace/render/reservation') ?>`)
+                }, 1000);
+            }
+        }).catch((err) => {
+            console.log(err)
+        });
+    })
 
     const convertRupiah = (number) => {
         let	str_number = number.toString(),

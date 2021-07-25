@@ -65,3 +65,42 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="modal-refund" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalScrollableTitle">Refund Reservasi</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form id="form-refund">
+				<div class="modal-body" id="modal-refund-body">
+					<input type="hidden" name="reservation_id" id="reservation_id">
+					
+					<div class="form-group">
+						<label for="">Nominal Pembayaran</label>
+						<div class="input-group input-group-alternative mb-4">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Rp.</span>
+							</div>
+							<input class="form-control" placeholder="Masukkan Nominal Pembayaran ..." type="number" name="total_payment">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="">Unggah Bukti</label>
+						<div class="input-group input-group-alternative mb-4">
+							<input class="form-control" name="photos" type="file" id="fileUpload">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Kirim</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
