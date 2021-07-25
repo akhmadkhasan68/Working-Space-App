@@ -37,7 +37,7 @@
             }
             elseif($page == "review")
             {
-                $data = $this->dataMenu($user_id);
+                $data = $this->dataReview($user_id);
             }
             elseif($page == "reservation")
             {
@@ -141,6 +141,18 @@
             return $this->db->select('a.*')->from('menus a')
                     ->join('places b', 'b.id = a.place_id')
                     ->where('b.user_id', $user_id)->get()->result();
+        }
+
+        private function dataReview($user_id)
+        {
+            $data = $this->db->select('c.*, d.*, b.*')->from('reservations a')
+            ->join('ratings b', 'b.reservation_id = a.id')
+            ->join('feedbacks c', 'c.rating_id = b.id')
+            ->join('users d', 'd.id = a.user_id')
+            ->join('places e', 'e.id = a.place_id')
+            ->where('e.user_id', $user_id)->get()->result_array();
+
+            return $data;
         }
     }
 ?>

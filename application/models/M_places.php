@@ -125,6 +125,10 @@
             $menus = $this->get_menus($place['id']);
             $place['menus'] = $menus;
 
+            //feedbacks
+            $feedbacks = $this->get_feedbacks($place['id']);
+            $place['feedbacks'] = $feedbacks;
+
             return $place;
         }
 
@@ -211,6 +215,17 @@
                     "place_id" => $place_id
                 ])->result_array();
             }
+
+            return $data;
+        }
+
+        private function get_feedbacks($place_id)
+        {
+            $data = $this->db->select('*')->from('reservations a')
+            ->join('ratings b', 'b.reservation_id = a.id')
+            ->join('feedbacks c', 'c.rating_id = b.id')
+            ->join('users d', 'd.id = a.user_id')
+            ->where('a.place_id', $place_id)->get()->result_array();
 
             return $data;
         }

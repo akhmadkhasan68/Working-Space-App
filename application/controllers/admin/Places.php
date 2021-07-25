@@ -34,8 +34,19 @@
             $id = $this->input->post('id');
 
             $data['data'] = $this->places->get_detail($id, null);
+            $data['ratings'] = $this->get_ratings($data['data']['feedbacks']);
 
             $this->load->view('admin/places/ajax/detail', $data);
+        }
+
+        private function get_ratings($feedbacks)
+        {
+            $total = 0;
+            foreach ($feedbacks as $key => $value) {
+                $total += $value['value'];
+            }
+
+            return round($total/count($feedbacks));
         }
 
         public function review()
