@@ -14,4 +14,4 @@ jobs:
         server: ftp.coworkingapps.site
         username: coworkingapps
         password: 5FDQ4HPHCef2
-        server-dir: public_html/www/
+        server-dir: public_html/
