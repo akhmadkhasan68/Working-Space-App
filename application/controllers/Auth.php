@@ -66,6 +66,7 @@ class Auth extends CI_Controller {
 
 	public function do_register()
 	{
+		$this->form_validation->set_message('is_unique', '%s is already taken. Please enter another value');
 		$this->form_validation->set_rules('name', 'Name', 'required');
 		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]');
 		$this->form_validation->set_rules('password', 'Password', 'required');
