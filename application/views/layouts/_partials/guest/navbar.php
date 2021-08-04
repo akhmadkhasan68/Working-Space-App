@@ -3,7 +3,7 @@
 	<nav class="navbar navbar-expand-lg navbar-absolute bg-white shadow">
 		<div class="container">
 			<div class="navbar-translate">
-				<a class="navbar-brand" href="<?php echo site_url('/')?>">PAGES TITLE</a>
+				<a class="navbar-brand" href="<?php echo site_url('/')?>">Co-Working Apps</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-header-6"
 					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="fa fa-bars"></span>

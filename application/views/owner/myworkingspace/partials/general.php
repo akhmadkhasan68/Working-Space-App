@@ -199,21 +199,9 @@
             dataType: 'json'
         }).then(res => {
             if (res.error) {
-                if(Object.keys(res.message).length > 1)
-                {
-                    Object.entries(res.message).forEach(([key, val]) => {
-                        toastr.error(val, 'Gagal');    
-                    });
-                }
-                else
-                {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: res.message
-                    });
-                }
-
+                Object.entries(res.message).forEach(([key, val]) => {
+                    toastr.error(val, 'Gagal');    
+                });
                 return;
             }
 

@@ -330,22 +330,9 @@
             data: data,
         }).then(res => {
             if (res.error) {
-                if(Object.keys(res.message).length > 1)
-                {
-                    Object.entries(res.message).forEach(([key, val]) => {
-                        toastr.error(val, 'Gagal');    
-                    });
-                }
-                else
-                {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: res.message,
-                        target: document.getElementById('add-menu-modal')
-                    });
-                }
-
+                Object.entries(res.message).forEach(([key, val]) => {
+                    toastr.error(val, 'Gagal');    
+                });
                 return;
             }
             
@@ -607,22 +594,9 @@
             type: 'POST'
         }).done((res) => {
             if(res.error){
-                if(Object.keys(res.message).length > 1)
-                {
-                    Object.entries(res.message).forEach(([key, val]) => {
-                        toastr.error(val, 'Gagal');    
-                    });
-                }
-                else
-                {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: res.message,
-                        target: document.getElementById('modal-refund'),
-                    });
-                }
-
+                Object.entries(res.message).forEach(([key, val]) => {
+                    toastr.error(val, 'Gagal');    
+                });
                 return;
             }else{
                 toastr.success(res.message, 'Berhasil');

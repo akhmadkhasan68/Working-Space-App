@@ -21,7 +21,7 @@
                     ->get()
                     ->row();
 
-            if(count($cek) > 0)
+            if(!empty($cek))
             {
                 $userdata = [
                     'user_id' => $cek->id,

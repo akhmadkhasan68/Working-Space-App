@@ -46,12 +46,48 @@ class Transaction extends CI_Controller {
     {
 		$from_date = $this->input->post('from_date');
 		$to_date = $this->input->post('to_date');
+		
+		$date1 = new DateTime($from_date);
+		$date2 = new DateTime($to_date);
+		$diff = $date2->diff($date1);
 
 		$this->db->select('a.place_id')->from('reservations a');
 		$this->db->where('a.place_id', $id);
 		// $this->db->where('a.status', 2);
 		$this->db->where("'$from_date:00' BETWEEN a.from_date and a.to_date OR '$to_date:00' BETWEEN a.from_date and a.to_date");
 		$avail = $this->db->get()->result_array();
+
+		//get day place 
+		$days = $diff->d;
+		$day_active = true;
+		$arr = [];
+		for($i = 0; $i <= $days; $i++)
+		{
+			$date_active = strtotime($from_date.' +'.$i.' days');
+			$date = date('N', $date_active);
+			if(date('Y-m-d', $date_active) == date('Y-m-d', strtotime($from_date))){
+				$time = date('H:i:s', strtotime($from_date));
+				$get_day = $this->places->get_day_active($id, $date, $time);
+			}elseif(date('Y-m-d', $date_active) == date('Y-m-d', strtotime($to_date))){
+				$time = date('H:i:s', strtotime($to_date));
+				$get_day = $this->places->get_day_active($id, $date, $time);
+			}else{
+				$get_day = $this->places->get_day_active($id, $date);
+			}
+
+			if(empty($get_day)){
+				$day_active = false;
+			}
+		}
+		
+		if(!$day_active)
+		{
+			print json_encode([
+				'error' => true,
+				'message' => 'Mohon maaf, Co-Working sedang libur!'
+			]);
+			die;
+		}
 
 		if(count($avail) > 0)
 		{
@@ -61,11 +97,6 @@ class Transaction extends CI_Controller {
 			]);
 			die;
 		}
-
-		$date1 = new DateTime($from_date);
-		$date2 = new DateTime($to_date);
-
-		$diff = $date2->diff($date1);
 
 		$hours = $diff->h;
 		$hours = $hours + ($diff->days*24);

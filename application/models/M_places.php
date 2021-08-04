@@ -229,5 +229,17 @@
 
             return $data;
         }
+
+        public function get_day_active($place_id, $day, $time = null)
+        {
+            $this->db->select('*')->from('place_schedules')->where([
+                'place_id' => $place_id,
+                'day_id' => $day
+            ]);
+            $this->db->where("'$time' BETWEEN open AND close");
+            $data = $this->db->get()->row();
+
+            return $data;
+        }
     }
 ?>

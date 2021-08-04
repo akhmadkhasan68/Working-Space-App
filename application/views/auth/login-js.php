@@ -30,9 +30,8 @@
                 setTimeout(() => {
                     window.location.href = `${res.redirect}`;
                 }, 1000);
-            })
-            .catch(err => {
-                alert(err);
+            }).catch(err => {
+                console.log(err);
             })
         })
     });

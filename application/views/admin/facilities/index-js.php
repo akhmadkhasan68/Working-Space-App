@@ -45,8 +45,7 @@
             url: `<?= site_url('admin/facilities/get_form')?>`,
             method: 'GET',
             data: {
-                id: id,
-                place_id: `<?= $place->id?>`
+                id: id
             }
         }).then(res => {
             $("#form-modal").modal('show');
@@ -67,22 +66,9 @@
             data: data,
         }).then(res => {
             if (res.error) {
-                if(Object.keys(res.message).length > 1)
-                {
-                    Object.entries(res.message).forEach(([key, val]) => {
-                        toastr.error(val, 'Gagal');    
-                    });
-                }
-                else
-                {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: res.message,
-                        target: document.getElementById('form-modal')
-                    });
-                }
-
+                Object.entries(res.message).forEach(([key, val]) => {
+                    toastr.error(val, 'Gagal');    
+                });
                 return;
             }
             
