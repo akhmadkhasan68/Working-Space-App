@@ -11,7 +11,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
-        server: ftp.coworkingapps.site
-        username: coworkingapps
-        password: 5FDQ4HPHCef2
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
         server-dir: public_html/
