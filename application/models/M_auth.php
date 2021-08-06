@@ -45,5 +45,10 @@
             //query insert data user untuk register
             return $this->db->insert('users', $data);
         }
+
+        public function get_userdata($id)
+        {
+            return $this->db->get_where('users', ['id' => $id])->row();
+        }
     }
 ?>
