@@ -7,9 +7,6 @@
             if($this->session->userdata('is_login') != true){
                 redirect('auth/login');
             }
-            if($this->session->userdata('role') != 'guest'){
-                show_404();
-            }
 
             $this->load->model('M_auth', 'm');
         }
