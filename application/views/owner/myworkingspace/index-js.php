@@ -20,7 +20,7 @@
         });
     }
 
-    const reConfirm = (id) => {
+    const reConfirm = (id, status) => {
         Swal.fire({
 			title: 'Apakah anda yakin?',
 			text: "Apakah anda yakin melakukan aksi?",
@@ -37,7 +37,7 @@
                     method: 'post',
                     dataType: 'json',
                     data: {
-                        id
+                        id, status
                     },
                 }).then(res => {
                     if(res.error)

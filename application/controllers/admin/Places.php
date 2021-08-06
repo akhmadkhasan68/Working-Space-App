@@ -61,5 +61,25 @@
                 'message' => "Berhasil melakukan aksi!"
             ]);
         }
+
+        public function delete()
+        {
+            $id = $this->input->post('id');
+
+            $delete = $this->db->where('id', $id)->delete('places');
+
+            if(!$delete){
+                print json_encode([
+                    'error' => true,
+                    'message' => "Gagal menghapus! (".$this->db->error()['message'].")"
+                ]);
+                die;
+            }
+
+            print json_encode([
+                'error' => false,
+                'message' => "Berhasil menghapus!"
+            ]);
+        }
     }
 ?>

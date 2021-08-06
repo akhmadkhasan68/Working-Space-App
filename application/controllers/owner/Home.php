@@ -14,10 +14,11 @@
         public function reconfirm()
         {
             $id = $this->input->post('id');
+            $status = $this->input->post('status');
             
             $this->db->where('id', $id);
             $this->db->update('places', [
-                'status' => 0
+                'status' => $status
             ]);
 
             print json_encode([
