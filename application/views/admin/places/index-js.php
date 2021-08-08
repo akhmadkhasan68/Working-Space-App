@@ -90,6 +90,7 @@
                     data: {
                         id
                     },
+                    dataType:'json',
                 }).then(res => {
                     if(res.error){
                         Swal.fire({
