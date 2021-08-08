@@ -57,10 +57,18 @@ class Auth extends CI_Controller {
 			die();
 		}
 
+		if($this->session->userdata('role') == "admin"){
+			$redirect = site_url('admin/dashboard');
+		}elseif($this->session->userdata('role') == "owner"){
+			$redirect = site_url('owner/myworkingspace');
+		}else{
+			$redirect = '';
+		}
+
 		print json_encode([
 			'error' => false,
 			'message' => 'Selamat datang!',
-			'redirect' => ($this->session->userdata('role') == "admin") ? site_url('admin/dashboard') : site_url('')
+			'redirect' => $redirect
 		]);
 	}
 
