@@ -75,7 +75,7 @@
         private function dataPhoto($user_id) 
         {
             //get data photo workingpsace
-            return $this->db->select("*")
+            return $this->db->select("a.*")
                     ->from("place_photos a")
                     ->join('places p', 'p.id = a.place_id')
                     ->where("p.user_id", $user_id)

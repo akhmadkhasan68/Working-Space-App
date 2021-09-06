@@ -49,8 +49,8 @@
                     </div>
                     <div class="row" id="img-section">
                         <?php foreach ($data['photos'] as $k_photo => $v_photo):?>
-                            <div class="col-md-2">
-                                <img src="<?= base_url()?>uploads/photos/<?= $v_photo->photo?>" class="img-responsive img-fluid rounded shadow">
+                            <div class="col-md-2" id="img-section-<?= $v_photo->id?>">
+                                <img src="<?= base_url()?>uploads/photos/<?= $v_photo->photo?>" class="img-responsive img-fluid rounded shadow" ondblclick="deleteImg(`<?= $v_photo->id?>`)">
                             </div>
                         <?php endforeach;?>
 
@@ -147,8 +147,8 @@
                 toastr.success(res.message, 'Berhasil');
                 
                 $("#img-section").prepend(`
-                    <div class="col-md-2">
-                        <img src="<?= base_url()?>uploads/photos/${res.data.file_name}" class="img-responsive img-fluid rounded shadow">
+                    <div class="col-md-2" id="img-section-${res.data.id}">
+                        <img src="<?= base_url()?>uploads/photos/${res.data.file_name}" class="img-responsive img-fluid rounded shadow" ondblclick="deleteImg(${res.data.id})">
                     </div>
                 `);
             }

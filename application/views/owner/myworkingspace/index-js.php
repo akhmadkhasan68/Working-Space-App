@@ -60,6 +60,43 @@
         $("#fileUpload").trigger('click');
     }
 
+    const deleteImg = id => {
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: `Data yang dihapus akan hilang sepenuhnya.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: `<?= site_url('owner/general/deleteImg')?>`,
+                    method: 'post',
+                    dataType: 'json',
+                    data: {
+                        id
+                    },
+                }).then(res => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: `Berhasil`,
+                        text: `${res.message}`
+                    });
+
+                    setTimeout(() => {
+                        $(`#img-section-${id}`).hide();
+                    }, 1000);
+                }).catch(err => {
+                    console.log(err)
+                })        
+            }
+        })  
+    }
+
+
     const adjustFacilities = (id, status) => {
         if(status === "destroy"){
             $.ajax({

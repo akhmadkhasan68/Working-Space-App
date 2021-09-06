@@ -114,5 +114,19 @@
             ]);
             die;
         }
+
+        public function deleteImg() {
+            $id = $this->input->post('id');
+            $img = $this->db->select('*')->from('place_photos')->where('id', $id)->get()->row();
+            
+            unlink($this->path.$img->photo);
+
+            $this->db->where('id', $id)->delete('place_photos');
+
+            print json_encode([
+                'error' => false,
+                'message' => 'Berhasil menghapus foto!'
+            ]);
+        }
     }
 ?>
