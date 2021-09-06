@@ -1,8 +1,11 @@
 <?php
     class General extends CI_Controller{
+        var $path;
         public function __construct()
         {
             parent::__construct();
+
+            $this->path = 'uploads/photos/';
 
             if($this->session->userdata('is_login') != true){
                 redirect('auth/login');
@@ -14,13 +17,29 @@
             $this->load->model('M_myworkingspace', 'm');
         }
 
+        private function resizeImage($filename)
+        {
+            //Compress Image
+            $config['image_library']='gd2';
+            $config['source_image']= $this->path.$filename;
+            $config['create_thumb']= FALSE;
+            $config['maintain_ratio']= FALSE;
+            $config['width']= 800;
+            $config['height']= 800;
+            $config['new_image']= $filename;
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+        }
+
         public function uploadImg()
         {
-            $config['upload_path'] = 'uploads/photos/';
+            $config['upload_path'] = $this->path;
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
-            // $config['max_size']  = '1000';
-            // $config['max_width']  = '1024';
-            // $config['max_height']  = '768';
+            $config['max_size']  = '1000';
+            $config['max_width']  = '1200';
+            $config['max_height']  = '1200';
+            $config['min_width']  = '500';
+            $config['min_height']  = '500';
             $config['encrypt_name'] = true;
 
             $this->upload->initialize($config);
@@ -36,6 +55,7 @@
             }
             
             $dataupload = $this->upload->data();
+            $this->resizeImage($dataupload['file_name']);
 
             $this->db->insert('place_photos', [
                 'place_id' => $this->input->get_post('place_id'),

@@ -40,6 +40,13 @@
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="" class="font-weight-bold">Foto</label>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-warning">
+                                Maksimal ukuran foto adalah 1MB dengan tinggi 500x500px - 1200-1200px
+                            </div>
+                        </div>
+                    </div>
                     <div class="row" id="img-section">
                         <?php foreach ($data['photos'] as $k_photo => $v_photo):?>
                             <div class="col-md-2">
