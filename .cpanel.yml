@@ -1,5 +1,5 @@
 ---
 deployment:
   task: 
-    - export DEPLOYPATH=/home/coworkingapps/public_html/
+    - export DEPLOYPATH=/home/coworksa/public_html/
     - /bin/cp -r * $DEPLOYPATH
