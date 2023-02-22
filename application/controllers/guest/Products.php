@@ -37,6 +37,8 @@ class Products extends CI_Controller {
 			$total += $value['value'];
 		}
 
+		if($total == 0) return 0;
+
 		return round($total/count($feedbacks));
 	}
 
